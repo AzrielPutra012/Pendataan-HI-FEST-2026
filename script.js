@@ -22,3 +22,56 @@ document.querySelectorAll('.navbar-custom nav a').forEach(anchor => {
         this.classList.add('active');
     });
 });
+<script>
+// Doughnut Chart - Home
+document.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById('homeDoughnutChart');
+    
+    if (!ctx) return;
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Sudah Terdata', 'Sedang Proses', 'Belum Terdata'],
+            datasets: [{
+                data: [68, 22, 10],
+                backgroundColor: [
+                    '#7DA0CA',    // Biru terang
+                    '#5483B3',    // Biru sedang
+                    '#052659'     // Biru gelap
+                ],
+                borderColor: '#021024',
+                borderWidth: 6,
+                hoverOffset: 20
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '72%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#C1E8FF',
+                        padding: 20,
+                        font: { size: 14 },
+                        usePointStyle: true
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(2, 16, 36, 0.95)',
+                    titleColor: '#C1E8FF',
+                    bodyColor: '#fff',
+                    padding: 14,
+                    cornerRadius: 8
+                }
+            },
+            animation: {
+                duration: 2200,
+                easing: 'easeOutBounce'
+            }
+        }
+    });
+});
+</script>

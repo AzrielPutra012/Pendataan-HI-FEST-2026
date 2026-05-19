@@ -27,27 +27,35 @@
 
     <main id="mainContainer" class="main-container-scroll">
 
-        <section id="home" class="section-panel bg-[#021024]">
-            <div class="absolute right-0 bottom-0 top-0 w-1/3 bg-gradient-to-l from-[#052659]/30 to-transparent pointer-events-none"></div>
-            <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-[#5483B3]/10 rounded-full blur-3xl pointer-events-none"></div>
-            
-            <div class="max-w-3xl z-10 space-y-6">
-                <span class="tag-internal">Bonjour!</span>
-                <h1 class="text-5xl md:text-7xl font-black tracking-tight text-white leading-none">
-                    Divisi Pendataan <br>
-                    <span class="text-gradient">HI-FEST 2026</span>
-                </h1>
-                <p class="text-lg md:text-2xl text-[#7DA0CA] font-medium max-w-xl italic leading-relaxed border-l-4 border-[#5483B3] pl-4">
-                    "Data bukan hanya sekedar angka, tapi selalu ada cerita dibaliknya."
-                </p>
-                <div class="pt-4">
-                    <a href="#about" class="btn-glow">
-                        Eksplor Portal Internal
-                        <i class="ph ph-arrow-right font-bold transition-transform duration-200 group-hover:translate-x-1"></i>
-                    </a>
-                </div>
+<section id="home" class="section-panel">
+    <div class="home-grid">
+        
+        <!-- KIRI - Teks Sambutan -->
+        <div class="home-left max-w-3xl z-10 space-y-6">
+            <span class="tag-internal">Bonjour!</span>
+            <h1 class="text-5xl md:text-7xl font-black tracking-tight text-white leading-none">
+                Divisi Pendataan <br>
+                <span class="text-gradient">HI-FEST 2026</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-[#7DA0CA] font-medium max-w-xl italic leading-relaxed border-l-4 border-[#5483B3] pl-4">
+                "Data bukan hanya sekedar angka, tapi selalu ada cerita dibaliknya."
+            </p>
+            <div class="pt-4">
+                <a href="#about" class="btn-glow">
+                    Eksplor Portal Internal
+                    <i class="ph ph-arrow-right font-bold transition-transform duration-200 group-hover:translate-x-1"></i>
+                </a>
             </div>
-        </section>
+        </div>
+
+        <!-- KANAN - Grafik Doughnut -->
+        <div class="home-right">
+            <div class="stats-visual">
+                <canvas id="homeDoughnutChart"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
 
         <section id="about" class="section-panel bg-[#052659]/30 border-l border-white/5">
             <div class="max-w-4xl w-full z-10 space-y-16 my-auto overflow-y-auto max-h-[80vh] pr-2 hide-scrollbar">
