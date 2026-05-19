@@ -4,132 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hifest 2026 - Divisi Pendataan</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: sans-serif;
-            overflow: hidden; /* Mencegah scroll vertikal utama */
-        }
-        /* Navbar Atas Tetap Statis */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            background-color: #021024;
-            color: #white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 50px;
-            z-index: 1000;
-        }
-        .navbar .menu a {
-            color: #C1E8FF;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
-        }
-        /* Container Utama untuk Scroll ke Kiri/Kanan */
-        .main-scroll-container {
-            display: flex;
-            width: 100vw;
-            height: 100vh;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-        }
-        /* Setiap Section mengambil 100% Layar penuh */
-        .page-section {
-            flex: 0 0 100vw;
-            height: 100vh;
-            scroll-snap-align: start;
-            padding: 120px 50px 50px 50px; /* Padding atas agar tidak tertutup navbar */
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-[#021024] text-white font-sans antialiased selection:bg-[#7DA0CA]/30">
 
-    <header class="navbar">
-        <div class="logo">
-            <h2>HIFEST 2026</h2>
+    <header class="navbar-custom">
+        <div class="flex items-center gap-3">
+            <div class="w-3 h-3 rounded-full bg-[#C1E8FF] animate-pulse"></div>
+            <h1 class="font-black tracking-widest text-xl text-white">HIFEST<span class="text-[#7DA0CA] font-light">2026</span></h1>
         </div>
-        <nav class="menu">
-            <a href="#home">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#timeline">Our Timeline</a>
-            <a href="#job">Our Job</a>
-            <a href="#update">Update Data</a>
+        <nav class="hidden md:flex items-center gap-8">
+            <a href="#home" class="nav-link active">HOME</a>
+            <a href="#about" class="nav-link">ABOUT US</a>
+            <a href="#timeline" class="nav-link">OUR TIMELINE</a>
+            <a href="#job" class="nav-link">OUR JOB</a>
+            <a href="#update" class="nav-link">UPDATE DATA</a>
         </nav>
+        <button class="md:hidden text-[#C1E8FF] text-2xl">
+            <i class="ph ph-list"></i>
+        </button>
     </header>
 
-    <main class="main-scroll-container">
+    <main id="mainContainer" class="main-container-scroll">
 
-        <section id="home" class="page-section">
-            <div class="welcome-content">
-                <h1>Selamat Datang di Portal Internal</h1>
-                <h2>Divisi Pendataan HIFEST 2026</h2>
-                <p>Pusat kendali informasi, monitoring pergerakan kuota pendaftaran, dan koordinasi tim data.</p>
-            </div>
-        </section>
-
-        <section id="about" class="page-section">
-            <div class="section-title">
-                <h2>About Us (Anggota Tim)</h2>
-                <p>Mengenal lebih dekat punggawa di balik pengolahan data perlombaan.</p>
-            </div>
-            <div class="team-grid">
-                <div class="member-card">Nama Anggota - Role</div>
-                <div class="member-card">Nama Anggota - Role</div>
-            </div>
-        </section>
-
-        <section id="timeline" class="page-section">
-            <div class="section-title">
-                <h2>Our Timeline</h2>
-                <p>Alur pergerakan kerja divisi pendataan dari awal hingga akhir event.</p>
-            </div>
-            <ul class="timeline-list">
-                <li>Tahap 1: Persiapan Sistem & Koordinasi</li>
-                <li>Tahap 2: Pembukaan Pendaftaran & Validasi Harian</li>
-                <li>Tahap 3: Penutupan Data & Rekapitulasi Final</li>
-            </ul>
-        </section>
-
-        <section id="job" class="page-section">
-            <div class="section-title">
-                <h2>Our Jobdesk</h2>
-                <p>Tugas utama yang menjadi tanggung jawab bersama divisi pendataan.</p>
-            </div>
-            <div class="job-container">
-                <div class="job-card">
-                    <h3>Validasi Berkas</h3>
-                    <p>Memeriksa kelayakan dan keaslian dokumen pendaftaran peserta.</p>
-                </div>
-                <div class="job-card">
-                    <h3>Rekapitulasi Data</h3>
-                    <p>Menyusun grafik perkembangan jumlah pendaftar secara berkala.</p>
+        <section id="home" class="section-panel bg-[#021024]">
+            <div class="absolute right-0 bottom-0 top-0 w-1/3 bg-gradient-to-l from-[#052659]/30 to-transparent pointer-events-none"></div>
+            <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-[#5483B3]/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="max-w-3xl z-10 space-y-6 mt-16">
+                <span class="tag-internal">INTERNAL PORTAL</span>
+                <h1 class="text-5xl md:text-7xl font-black tracking-tight text-white leading-none">
+                    Divisi Pendataan <br>
+                    <span class="text-gradient">HIFEST 2026</span>
+                </h1>
+                <p class="text-base md:text-lg text-[#7DA0CA] font-medium max-w-xl leading-relaxed">
+                    Selamat datang di pusat kendali data pendaftaran. Pantau pergerakan kuota peserta lomba Dispendik & Dispora secara real-time dan terstruktur di sini.
+                </p>
+                <div class="pt-4">
+                    <a href="#update" class="btn-glow">
+                        Lihat Grafik Data
+                        <i class="ph ph-arrow-right font-bold transition-transform duration-200 group-hover:translate-x-1"></i>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section id="update" class="page-section">
-            <div class="section-title">
-                <h2>Update Data Pendaftaran</h2>
-                <p>Live stats monitoring untuk klaster Dispendik dan Dispora.</p>
+        <section id="about" class="section-panel bg-[#052659]/40 border-l border-white/5">
+            <div class="max-w-5xl z-10 space-y-8 mt-12">
+                <div>
+                    <h2 class="text-xs font-bold text-[#7DA0CA] tracking-widest uppercase">The Team</h2>
+                    <h3 class="text-3xl md:text-5xl font-extrabold text-white mt-1">Punggawa Data</h3>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="team-card group">
+                        <div class="card-icon"><i class="ph ph-user-crown"></i></div>
+                        <h4 class="font-bold text-lg text-white">Azriel Putra</h4>
+                        <p class="text-xs text-[#7DA0CA] font-medium">Coordinator & Web Dev</p>
+                    </div>
+                    <div class="team-card group">
+                        <div class="card-icon"><i class="ph ph-user"></i></div>
+                        <h4 class="font-bold text-lg text-white">Zidan</h4>
+                        <p class="text-xs text-[#7DA0CA] font-medium">Finance & Data Analyst</p>
+                    </div>
+                    <div class="team-card group">
+                        <div class="card-icon"><i class="ph ph-users"></i></div>
+                        <h4 class="font-bold text-lg text-white">Anggota 3</h4>
+                        <p class="text-xs text-[#7DA0CA] font-medium">Data Validator</p>
+                    </div>
+                </div>
             </div>
-            <div class="chart-wrapper">
-                <div id="dispendik-chart-slot">[Slot Grafik Dispendik]</div>
-                <div id="dispora-chart-slot">[Slot Grafik Dispora]</div>
+        </section>
+
+        <section id="timeline" class="section-panel bg-[#021024] border-l border-white/5">
+            <div class="max-w-4xl z-10 space-y-10 mt-12">
+                <div>
+                    <h2 class="text-xs font-bold text-[#5483B3] tracking-widest uppercase">Roadmap</h2>
+                    <h3 class="text-3xl md:text-5xl font-extrabold text-white mt-1">Alur Kerja Divisi</h3>
+                </div>
+                <div class="timeline-wrapper">
+                    <div class="relative">
+                        <div class="timeline-dot bg-[#C1E8FF]"></div>
+                        <h4 class="font-bold text-lg text-[#C1E8FF]">Fase 1: Sistem & Database Sheet</h4>
+                        <p class="text-sm text-[#7DA0CA] mt-1">Perancangan arsitektur data dan sinkronisasi formulir pendaftaran utama.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="timeline-dot bg-[#5483B3]"></div>
+                        <h4 class="font-bold text-lg text-white">Fase 2: Validasi & Rekap Harian</h4>
+                        <p class="text-sm text-[#7DA0CA] mt-1">Membuka gerbang pendaftaran, mencocokkan berkas fisik/digital, serta mengupdate dashboard.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="timeline-dot bg-[#052659]"></div>
+                        <h4 class="font-bold text-lg text-[#7DA0CA]">Fase 3: Finalisasi & Pembekalan Data</h4>
+                        <p class="text-sm text-[#7DA0CA]/60 mt-1">Penguncian data final untuk diserahkan ke penanggung jawab masing-masing cabang lomba.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="job" class="section-panel bg-[#052659]/20 border-l border-white/5">
+            <div class="max-w-5xl z-10 space-y-8 mt-12">
+                <div>
+                    <h2 class="text-xs font-bold text-[#7DA0CA] tracking-widest uppercase">Responsibilities</h2>
+                    <h3 class="text-3xl md:text-5xl font-extrabold text-white mt-1">Jobdesk Utama</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="job-card">
+                        <div class="text-3xl text-[#C1E8FF] mt-1"><i class="ph ph-shield-check"></i></div>
+                        <div>
+                            <h4 class="font-bold text-xl text-white">Validasi Berkas</h4>
+                            <p class="text-sm text-[#7DA0CA] mt-2 leading-relaxed">Melakukan pengecekan ketat terhadap berkas administratif peserta (kartu pelajar, surat rekomendasi) agar tidak ada manipulasi data.</p>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <div class="text-3xl text-[#7DA0CA] mt-1"><i class="ph ph-chart-line-up"></i></div>
+                        <div>
+                            <h4 class="font-bold text-xl text-white">Penyusunan Statistik</h4>
+                            <p class="text-sm text-[#7DA0CA] mt-2 leading-relaxed">Mengelompokkan data pendaftar ke dalam klaster Pendidikan (Dispendik) dan Olahraga (Dispora) secara berkala demi pemetaan kapasitas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="update" class="section-panel bg-[#021024] border-l border-white/5">
+            <div class="max-w-4xl z-10 space-y-6 mt-12">
+                <div>
+                    <h2 class="text-xs font-bold text-[#C1E8FF] tracking-widest uppercase">Live Statistics</h2>
+                    <h3 class="text-3xl md:text-5xl font-extrabold text-white mt-1">Update Data Lomba</h3>
+                </div>
+                <div class="stats-box">
+                    <div class="stats-card">
+                        <div class="text-xs font-bold text-[#7DA0CA] tracking-wider uppercase">Klaster Dispendik</div>
+                        <div class="text-4xl font-black text-white mt-2">245 <span class="text-sm font-normal text-[#5483B3]">Peserta</span></div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill bg-[#5483B3] w-[65%]"></div>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="text-xs font-bold text-[#7DA0CA] tracking-wider uppercase">Klaster Dispora</div>
+                        <div class="text-4xl font-black text-white mt-2">310 <span class="text-sm font-normal text-[#7DA0CA]">Peserta</span></div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill bg-[#7DA0CA] w-[80%]"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
     </main>
 
+    <script src="script.js"></script>
 </body>
 </html>
