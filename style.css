@@ -1,6 +1,12 @@
-/* Mengunci scroll vertikal utama */
-body {
-    overflow-y: hidden;
+/* KUNCI TOTAL SCROLL VERTIKAL PADA BROWSER */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden !important; /* Mematikan scroll ke bawah */
+    overflow-x: hidden;
+    background-color: #021024;
 }
 
 /* Tampilan Navbar Atas (Glassmorphism Deep Blue) */
@@ -30,48 +36,50 @@ body {
 .nav-link {
     font-size: 0.875rem;
     font-weight: 600;
-    tracking-content: 0.05em;
+    letter-spacing: 0.05em;
     transition: color 0.2s;
 }
 .nav-link.active { color: #C1E8FF; }
 .nav-link:not(.active) { color: #7DA0CA; }
 .nav-link:hover { color: #ffffff; }
 
-/* Wadah Utama Mekanisme Horizontal Scroll */
+/* WADAH UTAMA: MEMAKSA SEMUA HALAMAN BERBARIS KE SAMPING */
 .main-container-scroll {
     display: flex;
+    flex-wrap: nowrap; /* Mencegah halaman turun ke bawah */
     width: 100vw;
     height: 100vh;
-    overflow-x: auto;
+    overflow-x: auto; /* Mengaktifkan scroll ke samping */
+    overflow-y: hidden; /* Memastikan tidak ada luapan vertikal */
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
-    -ms-overflow-style: none;  /* Sembunyikan scrollbar Edge/IE */
-    scrollbar-width: none;  /* Sembunyikan scrollbar Firefox */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
 }
 .main-container-scroll::-webkit-scrollbar {
-    display: none; /* Sembunyikan scrollbar Chrome/Safari */
+    display: none; 
 }
 
-/* Setiap Halaman Section Mengambil Full Layar */
+/* SETIAP HALAMAN SECTION WAJIB KOTAK PENUH (100vw x 100vh) */
 .section-panel {
     width: 100vw;
     height: 100vh;
-    flex-shrink: 0;
+    flex: 0 0 100vw; /* Mengunci lebar tepat 100% layar komputer */
     scroll-snap-align: start;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 32px;
+    padding: 80px 32px 32px 32px; /* Padding atas agar tidak tertutup navbar */
     overflow: hidden;
 }
 @media (min-width: 768px) {
     .section-panel {
-        padding: 0 96px;
+        padding: 80px 96px 32px 96px;
     }
 }
 
-/* Ornamen Gaya Estetika Gambar Kopi Khas */
+/* --- STYLE ESTETIKA DETIL (SAMA SEPERTI SEBELUMNYA) --- */
 .tag-internal {
     display: inline-block;
     background-color: #052659;
@@ -107,7 +115,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Kartu Struktur Anggota Tim */
 .team-card {
     background-color: rgba(2, 16, 36, 0.6);
     backdrop-filter: blur(4px);
@@ -116,9 +123,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.3s;
 }
-.team-card:hover {
-    border-color: rgba(125, 160, 202, 0.3);
-}
+.team-card:hover { border-color: rgba(125, 160, 202, 0.3); }
 
 .card-icon {
     width: 48px;
@@ -138,16 +143,13 @@ body {
     color: #021024;
 }
 
-/* Alur Garis Kerja (Timeline) */
 .timeline-wrapper {
     position: relative;
     border-left: 2px solid #052659;
     padding-left: 24px;
     margin-left: 16px;
 }
-.timeline-wrapper > div {
-    margin-bottom: 32px;
-}
+.timeline-wrapper > div { margin-bottom: 32px; }
 .timeline-dot {
     position: absolute;
     left: -31px;
@@ -158,7 +160,6 @@ body {
     border: 4px solid #021024;
 }
 
-/* Kotak Kumpulan Jobdesk */
 .job-card {
     background: linear-gradient(to bottom right, rgba(5, 38, 89, 0.6), rgba(2, 16, 36, 0.8));
     padding: 32px;
@@ -168,7 +169,6 @@ body {
     gap: 20px;
 }
 
-/* Panel Tampilan Statistik */
 .stats-box {
     background-color: rgba(5, 38, 89, 0.4);
     backdrop-filter: blur(6px);
@@ -182,9 +182,7 @@ body {
     gap: 32px;
 }
 @media (min-width: 768px) {
-    .stats-box {
-        flex-direction: row;
-    }
+    .stats-box { flex-direction: row; }
 }
 .stats-card {
     padding: 24px;
@@ -202,7 +200,4 @@ body {
     margin-top: 16px;
     overflow: hidden;
 }
-.progress-bar-fill {
-    height: 100%;
-    border-radius: 9999px;
-}
+.progress-bar-fill { height: 100%; border-radius: 9999px; }
