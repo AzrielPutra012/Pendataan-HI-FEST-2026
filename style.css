@@ -1,103 +1,263 @@
-/* KUNCI TOTAL SCROLL VERTIKAL PADA BROWSER */
+/* =============================================
+   KUNCI TOTAL SCROLL VERTIKAL + DEEP OCEAN THEME
+   ============================================= */
+
+* {
+    box-sizing: border-box;
+}
+
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow-y: hidden !important; /* Mematikan scroll ke bawah */
-    overflow-x: hidden;
+    overflow: hidden;
     background-color: #021024;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #e0f0ff;
 }
 
-/* Tampilan Navbar Atas (Glassmorphism Deep Blue) */
+/* ==================== NAVBAR ==================== */
 .navbar-custom {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 80px;
-    background-color: rgba(2, 16, 36, 0.7);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(2, 16, 36, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 32px;
-    z-index: 50;
+    z-index: 1000;
 }
 
 @media (min-width: 768px) {
-    .navbar-custom {
-        padding: 0 64px;
-    }
+    .navbar-custom { padding: 0 64px; }
 }
 
-/* Gaya Link Menu di Navbar */
+/* Nav Link dengan underline */
 .nav-link {
-    font-size: 0.875rem;
+    position: relative;
+    font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0.05em;
-    transition: color 0.2s;
+    color: #7DA0CA;
+    text-decoration: none;
+    padding-bottom: 6px;
+    transition: color 0.3s;
 }
-.nav-link.active { color: #C1E8FF; }
-.nav-link:not(.active) { color: #7DA0CA; }
-.nav-link:hover { color: #ffffff; }
 
-/* WADAH UTAMA: MEMAKSA SEMUA HALAMAN BERBARIS KE SAMPING */
+.nav-link:hover,
+.nav-link.active {
+    color: #C1E8FF;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #7DA0CA, #C1E8FF);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* ==================== MAIN SCROLL CONTAINER ==================== */
 .main-container-scroll {
     display: flex;
-    flex-wrap: nowrap; /* Mencegah halaman turun ke bawah */
+    flex-wrap: nowrap;
     width: 100vw;
     height: 100vh;
-    overflow-x: auto; /* Mengaktifkan scroll ke samping */
-    overflow-y: hidden; /* Memastikan tidak ada luapan vertikal */
+    overflow-x: auto;
+    overflow-y: hidden;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
-    -ms-overflow-style: none;  
-    scrollbar-width: none;  
-}
-.main-container-scroll::-webkit-scrollbar {
-    display: none; 
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-/* SETIAP HALAMAN SECTION WAJIB KOTAK PENUH (100vw x 100vh) */
+.main-container-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* ==================== SECTION PANEL ==================== */
 .section-panel {
     width: 100vw;
+    min-width: 100vw;
     height: 100vh;
-    flex: 0 0 100vw; /* Mengunci lebar tepat 100% layar komputer */
+    flex: 0 0 100vw;
     scroll-snap-align: start;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 32px 32px 32px; /* Padding atas agar tidak tertutup navbar */
+    padding: 100px 32px 40px;
     overflow: hidden;
 }
+
 @media (min-width: 768px) {
     .section-panel {
-        padding: 80px 96px 32px 96px;
+        padding: 100px 96px 40px;
     }
 }
 
-/* --- STYLE ESTETIKA DETIL (SAMA SEPERTI SEBELUMNYA) --- */
-.tag-internal {
-    display: inline-block;
-    background-color: #052659;
-    color: #C1E8FF;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 6px 16px;
+/* ==================== HOME SECTION ==================== */
+.home-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    height: 100%;
+    align-items: center;
+}
+
+@media (max-width: 992px) {
+    .home-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+}
+
+.home-right {
+    background: linear-gradient(145deg, rgba(5,38,89,0.65), rgba(2,16,36,0.85));
+    border-radius: 28px;
+    padding: 32px;
+    border: 1px solid rgba(125,160,202,0.25);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-visual {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.stats-visual::before {
+    content: '';
+    position: absolute;
+    inset: -30%;
+    background: radial-gradient(circle at center, rgba(193,232,255,0.1), transparent 70%);
+    z-index: -1;
+}
+
+/* ==================== ABOUT US CARDS ==================== */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 32px;
+    margin-top: 40px;
+}
+
+.about-card {
+    background: rgba(2, 16, 36, 0.6);
+    border: 1px solid rgba(125,160,202,0.15);
+    border-radius: 20px;
+    padding: 40px 32px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #5483B3, #C1E8FF);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+}
+
+.about-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(125,160,202,0.4);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.about-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* ==================== TIMELINE ==================== */
+.timeline {
+    position: relative;
+    padding-left: 60px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #052659, #5483B3);
     border-radius: 9999px;
-    border: 1px solid rgba(84, 131, 179, 0.3);
 }
 
-.text-gradient {
-    background: linear-gradient(to right, #7DA0CA, #5483B3, #C1E8FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.timeline-item {
+    position: relative;
+    margin-bottom: 60px;
+    padding-left: 40px;
 }
 
+.timeline-dot {
+    position: absolute;
+    left: -8px;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    background: #021024;
+    border: 4px solid #7DA0CA;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C1E8FF;
+    font-weight: bold;
+    transition: all 0.3s;
+    z-index: 2;
+}
+
+.timeline-item:hover .timeline-dot {
+    background: #7DA0CA;
+    color: #021024;
+    transform: scale(1.2);
+}
+
+.timeline-content {
+    background: rgba(5,38,89,0.5);
+    padding: 28px;
+    border-radius: 20px;
+    border: 1px solid rgba(125,160,202,0.1);
+    transition: all 0.4s;
+}
+
+.timeline-item:hover .timeline-content {
+    border-color: #7DA0CA;
+    transform: translateX(12px);
+}
+
+/* Button Glow */
 .btn-glow {
     display: inline-flex;
     align-items: center;
@@ -107,97 +267,15 @@ html, body {
     font-weight: 700;
     padding: 16px 32px;
     border-radius: 12px;
-    box-shadow: 0 10px 15px -3px rgba(84, 131, 179, 0.2);
-    transition: all 0.3s;
+    box-shadow: 0 10px 15px -3px rgba(84, 131, 179, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .btn-glow:hover {
-    box-shadow: 0 10px 20px rgba(125, 160, 202, 0.4);
+    box-shadow: 0 15px 25px rgba(125, 160, 202, 0.4);
     transform: scale(1.05);
 }
 
-.team-card {
-    background-color: rgba(2, 16, 36, 0.6);
-    backdrop-filter: blur(4px);
-    padding: 24px;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s;
+.btn-glow:active {
+    transform: scale(0.95);
 }
-.team-card:hover { border-color: rgba(125, 160, 202, 0.3); }
-
-.card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background-color: rgba(84, 131, 179, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #C1E8FF;
-    margin-bottom: 16px;
-    font-size: 1.25rem;
-    transition: all 0.3s;
-}
-.team-card:hover .card-icon {
-    background-color: #5483B3;
-    color: #021024;
-}
-
-.timeline-wrapper {
-    position: relative;
-    border-left: 2px solid #052659;
-    padding-left: 24px;
-    margin-left: 16px;
-}
-.timeline-wrapper > div { margin-bottom: 32px; }
-.timeline-dot {
-    position: absolute;
-    left: -31px;
-    top: 6px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 4px solid #021024;
-}
-
-.job-card {
-    background: linear-gradient(to bottom right, rgba(5, 38, 89, 0.6), rgba(2, 16, 36, 0.8));
-    padding: 32px;
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    gap: 20px;
-}
-
-.stats-box {
-    background-color: rgba(5, 38, 89, 0.4);
-    backdrop-filter: blur(6px);
-    padding: 32px;
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    gap: 32px;
-}
-@media (min-width: 768px) {
-    .stats-box { flex-direction: row; }
-}
-.stats-card {
-    padding: 24px;
-    background-color: rgba(2, 16, 36, 0.8);
-    border-radius: 16px;
-    width: 100%;
-    max-width: 320px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-.progress-bar-bg {
-    width: 100%;
-    background-color: #052659;
-    height: 8px;
-    border-radius: 9999px;
-    margin-top: 16px;
-    overflow: hidden;
-}
-.progress-bar-fill { height: 100%; border-radius: 9999px; }
