@@ -1,195 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hifest Data Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <title>Hifest 2026 - Divisi Pendataan</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: sans-serif;
+            overflow: hidden; /* Mencegah scroll vertikal utama */
+        }
+        /* Navbar Atas Tetap Statis */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: #021024;
+            color: #white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            z-index: 1000;
+        }
+        .navbar .menu a {
+            color: #C1E8FF;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        /* Container Utama untuk Scroll ke Kiri/Kanan */
+        .main-scroll-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+        }
+        /* Setiap Section mengambil 100% Layar penuh */
+        .page-section {
+            flex: 0 0 100vw;
+            height: 100vh;
+            scroll-snap-align: start;
+            padding: 120px 50px 50px 50px; /* Padding atas agar tidak tertutup navbar */
+        }
+    </style>
 </head>
-<body class="bg-[#C1E8FF] min-h-screen text-[#021024] font-sans antialiased selection:bg-[#7DA0CA] selection:text-white">
+<body>
 
-    <div class="flex flex-col md:flex-row min-h-screen">
-        
-        <aside class="w-full md:w-64 bg-[#021024] text-white p-6 flex flex-col justify-between shadow-xl">
-            <div>
-                <div class="flex items-center gap-3 mb-8 pb-4 border-b border-[#052659]/50">
-                    <div class="w-10 h-10 bg-[#7DA0CA] rounded-xl flex items-center justify-center shadow-lg shadow-[#7DA0CA]/20">
-                        <i class="ph ph-chart-bar-horizontal text-xl text-[#021024] font-bold"></i>
-                    </div>
-                    <div>
-                        <h1 class="font-bold text-lg tracking-wide">HIFEST 2026</h1>
-                        <p class="text-xs text-[#7DA0CA]">Divisi Pendataan</p>
-                    </div>
-                </div>
+    <header class="navbar">
+        <div class="logo">
+            <h2>HIFEST 2026</h2>
+        </div>
+        <nav class="menu">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#timeline">Our Timeline</a>
+            <a href="#job">Our Job</a>
+            <a href="#update">Update Data</a>
+        </nav>
+    </header>
 
-                <nav class="space-y-2">
-                    <a href="#" class="flex items-center gap-3 px-4 py-3 bg-[#052659] text-white rounded-xl font-medium transition-all duration-200 shadow-md shadow-[#052659]/30">
-                        <i class="ph ph-squares-four text-xl text-[#7DA0CA]"></i>
-                        Dashboard
-                    </a>
-                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-[#7DA0CA] hover:bg-[#052659]/40 hover:text-white rounded-xl font-medium transition-all duration-200">
-                        <i class="ph ph-users-three text-xl"></i>
-                        Profil Divisi
-                    </a>
-                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-[#7DA0CA] hover:bg-[#052659]/40 hover:text-white rounded-xl font-medium transition-all duration-200">
-                        <i class="ph ph-chart-pie-slice text-xl"></i>
-                        Statistik Lomba
-                    </a>
-                </nav>
+    <main class="main-scroll-container">
+
+        <section id="home" class="page-section">
+            <div class="welcome-content">
+                <h1>Selamat Datang di Portal Internal</h1>
+                <h2>Divisi Pendataan HIFEST 2026</h2>
+                <p>Pusat kendali informasi, monitoring pergerakan kuota pendaftaran, dan koordinasi tim data.</p>
             </div>
+        </section>
 
-            <div class="pt-4 border-t border-[#052659]/50 flex items-center gap-3 mt-8 md:mt-0">
-                <div class="w-9 h-9 rounded-full bg-[#5483B3] flex items-center justify-center text-white font-bold text-sm">
-                    P
-                </div>
-                <div>
-                    <p class="text-xs font-semibold text-white">Tim Pendataan</p>
-                    <p class="text-[10px] text-[#7DA0CA]">Internal Panel</p>
-                </div>
+        <section id="about" class="page-section">
+            <div class="section-title">
+                <h2>About Us (Anggota Tim)</h2>
+                <p>Mengenal lebih dekat punggawa di balik pengolahan data perlombaan.</p>
             </div>
-        </aside>
-
-        <main class="flex-1 p-6 md:p-10 space-y-8 max-w-7xl mx-auto w-full">
-            
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-[#021024] tracking-tight">Overview Dashboard</h2>
-                    <p class="text-sm text-[#052659]/80 font-medium">Selamat datang kembali! Berikut ringkasan pendaftaran Hifest saat ini.</p>
-                </div>
-                <div class="bg-white/60 backdrop-blur-md border border-white/40 px-4 py-2 rounded-xl text-xs font-semibold shadow-sm text-[#052659]">
-                    <i class="ph ph-calendar-blank mr-1 align-middle text-sm"></i> Live Monitoring
-                </div>
+            <div class="team-grid">
+                <div class="member-card">Nama Anggota - Role</div>
+                <div class="member-card">Nama Anggota - Role</div>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                <div class="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-white/50 shadow-sm flex items-center justify-between transition-transform duration-200 hover:-translate-y-1">
-                    <div>
-                        <p class="text-xs font-bold uppercase tracking-wider text-[#5483B3]">Total Pendaftar</p>
-                        <h3 id="total-pendaftar" class="text-3xl font-black text-[#021024] mt-1">0</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-[#021024] text-white rounded-xl flex items-center justify-center shadow-lg shadow-[#021024]/10">
-                        <i class="ph ph-user-list text-2xl"></i>
-                    </div>
+        <section id="timeline" class="page-section">
+            <div class="section-title">
+                <h2>Our Timeline</h2>
+                <p>Alur pergerakan kerja divisi pendataan dari awal hingga akhir event.</p>
+            </div>
+            <ul class="timeline-list">
+                <li>Tahap 1: Persiapan Sistem & Koordinasi</li>
+                <li>Tahap 2: Pembukaan Pendaftaran & Validasi Harian</li>
+                <li>Tahap 3: Penutupan Data & Rekapitulasi Final</li>
+            </ul>
+        </section>
+
+        <section id="job" class="page-section">
+            <div class="section-title">
+                <h2>Our Jobdesk</h2>
+                <p>Tugas utama yang menjadi tanggung jawab bersama divisi pendataan.</p>
+            </div>
+            <div class="job-container">
+                <div class="job-card">
+                    <h3>Validasi Berkas</h3>
+                    <p>Memeriksa kelayakan dan keaslian dokumen pendaftaran peserta.</p>
                 </div>
-
-                <div class="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-white/50 shadow-sm flex items-center justify-between transition-transform duration-200 hover:-translate-y-1">
-                    <div>
-                        <p class="text-xs font-bold uppercase tracking-wider text-[#5483B3]">Dispendik (Pendidikan)</p>
-                        <h3 id="total-dispendik" class="text-3xl font-black text-[#052659] mt-1">0</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-[#052659] text-white rounded-xl flex items-center justify-center shadow-lg shadow-[#052659]/10">
-                        <i class="ph ph-student text-2xl"></i>
-                    </div>
-                </div>
-
-                <div class="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-white/50 shadow-sm flex items-center justify-between transition-transform duration-200 hover:-translate-y-1">
-                    <div>
-                        <p class="text-xs font-bold uppercase tracking-wider text-[#5483B3]">Dispora (Olahraga)</p>
-                        <h3 id="total-dispora" class="text-3xl font-black text-[#5483B3] mt-1">0</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-[#5483B3] text-white rounded-xl flex items-center justify-center shadow-lg shadow-[#5483B3]/10">
-                        <i class="ph ph-trophy text-2xl"></i>
-                    </div>
-                </div>
-
-                <div class="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-white/50 shadow-sm flex items-center justify-between transition-transform duration-200 hover:-translate-y-1">
-                    <div>
-                        <p class="text-xs font-bold uppercase tracking-wider text-[#5483B3]">Capaian Target</p>
-                        <h3 id="persen-target" class="text-3xl font-black text-[#7DA0CA] mt-1">0%</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-[#7DA0CA] text-[#021024] rounded-xl flex items-center justify-center shadow-lg shadow-[#7DA0CA]/20">
-                        <i class="ph ph-trend-up text-2xl font-bold"></i>
-                    </div>
+                <div class="job-card">
+                    <h3>Rekapitulasi Data</h3>
+                    <p>Menyusun grafik perkembangan jumlah pendaftar secara berkala.</p>
                 </div>
             </div>
+        </section>
 
-            <div class="bg-white/90 backdrop-blur-md p-6 rounded-3xl border border-white/60 shadow-md">
-                <div class="flex items-center justify-between mb-6">
-                    <div>
-                        <h4 class="text-lg font-bold text-[#021024]">Perbandingan Pendaftar per Cabang</h4>
-                        <p class="text-xs text-[#052659]/70 font-medium">Visualisasi perbandingan jumlah peserta antara Dispendik dan Dispora</p>
-                    </div>
-                </div>
-                <div class="w-full max-h-[360px] flex justify-center">
-                    <canvas id="overviewChart"></canvas>
-                </div>
+        <section id="update" class="page-section">
+            <div class="section-title">
+                <h2>Update Data Pendaftaran</h2>
+                <p>Live stats monitoring untuk klaster Dispendik dan Dispora.</p>
             </div>
+            <div class="chart-wrapper">
+                <div id="dispendik-chart-slot">[Slot Grafik Dispendik]</div>
+                <div id="dispora-chart-slot">[Slot Grafik Dispora]</div>
+            </div>
+        </section>
 
-        </main>
-    </div>
+    </main>
 
-    <script>
-        // Sesuai saran: Kumpulan database statis ditaruh dalam satu objek terpusat
-        // Kamu cukup ubah angka di sini jika ada update kuota pendaftar lapangan!
-        const dataHifest = {
-            targetKuota: 1000,
-            dispendik: {
-                label: 'Dispendik (Pendidikan)',
-                total: 245,
-                color: '#052659' // Warna palet ke-2
-            },
-            dispora: {
-                label: 'Dispora (Olahraga)',
-                total: 310,
-                color: '#5483B3' // Warna palet ke-3
-            }
-        };
-
-        // 1. Kalkulasi Data & Tampilkan ke Elemen HTML
-        const totalPendaftar = dataHifest.dispendik.total + dataHifest.dispora.total;
-        const persentaseTarget = Math.round((totalPendaftar / dataHifest.targetKuota) * 100);
-
-        document.getElementById('total-pendaftar').innerText = totalPendaftar;
-        document.getElementById('total-dispendik').innerText = dataHifest.dispendik.total;
-        document.getElementById('total-dispora').innerText = dataHifest.dispora.total;
-        document.getElementById('persen-target').innerText = persentaseTarget + '%';
-
-        // 2. Inisialisasi Grafik Chart.js
-        const ctx = document.getElementById('overviewChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar', // Menggunakan grafik batang
-            data: {
-                labels: [dataHifest.dispendik.label, dataHifest.dispora.label],
-                datasets: [{
-                    label: 'Jumlah Pendaftar',
-                    data: [dataHifest.dispendik.total, dataHifest.dispora.total],
-                    backgroundColor: [dataHifest.dispendik.color, dataHifest.dispora.color],
-                    borderRadius: 12, // Membuat sudut batang melengkung modis
-                    borderWidth: 0,
-                    barThickness: 45 // Lebar batang grafik
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false // Sembunyikan legend bawaan karena sudah jelas dari label sumbu X
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(5, 38, 89, 0.05)' // Garis grid tipis transparan
-                        },
-                        ticks: {
-                            color: '#021024',
-                            font: { weight: '600' }
-                        }
-                    },
-                    x: {
-                        grid: { display: false }, // Sembunyikan garis vertikal grid biar clean
-                        ticks: {
-                            color: '#021024',
-                            font: { weight: 'bold' }
-                        }
-                    }
-                }
-            }
-        });
-    </script>
 </body>
 </html>
