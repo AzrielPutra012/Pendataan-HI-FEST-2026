@@ -234,3 +234,185 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('%cHook ready: window.updateStats({ total, verified, pending, divisi })', 'color:#A7EBF2; font-size:11px;');
 
 });
+/* ═══════════════════════════════════════════════════
+   about-script.js — HI-FEST 2026 | Section About Us
+   Letakkan setelah script.js, sebelum </body>
+═══════════════════════════════════════════════════ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ────────────────────────────────────────────────
+  // 1. SIMPLE AOS (Animate On Scroll) — Lightweight
+  //    Triggers .aos-visible class via IntersectionObserver
+  // ────────────────────────────────────────────────
+  const aosElements = document.querySelectorAll('[data-aos]');
+
+  const aosObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('aos-visible');
+        aosObserver.unobserve(entry.target); // once only
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px',
+  });
+
+  aosElements.forEach(el => aosObserver.observe(el));
+
+
+  // ────────────────────────────────────────────────
+  // 2. TIMELINE — Scroll Progress Bar
+  // ────────────────────────────────────────────────
+  const track    = document.getElementById('timeline-track');
+  const progress = document.getElementById('tl-progress');
+
+  if (track && progress) {
+    const updateProgress = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = track;
+      const maxScroll = scrollWidth - clientWidth;
+      const pct       = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
+      progress.style.width = `${pct}%`;
+    };
+
+    track.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress(); // Init
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 3. TIMELINE — Click & Drag to Scroll (desktop)
+  // ────────────────────────────────────────────────
+  if (track) {
+    let isDragging  = false;
+    let startX      = 0;
+    let scrollStart = 0;
+    let moved       = false;
+
+    track.addEventListener('mousedown', (e) => {
+      isDragging  = true;
+      moved       = false;
+      startX      = e.pageX - track.offsetLeft;
+      scrollStart = track.scrollLeft;
+      track.style.cursor = 'grabbing';
+    });
+
+    track.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const dx = (e.pageX - track.offsetLeft) - startX;
+      if (Math.abs(dx) > 5) moved = true;
+      track.scrollLeft = scrollStart - dx;
+    });
+
+    const stopDrag = () => {
+      isDragging = false;
+      track.style.cursor = 'grab';
+    };
+
+    track.addEventListener('mouseup',    stopDrag);
+    track.addEventListener('mouseleave', stopDrag);
+
+    // Prevent card clicks from firing when dragging
+    track.addEventListener('click', (e) => {
+      if (moved) e.stopPropagation();
+    }, true);
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 4. TIMELINE — Keyboard Arrow Navigation
+  // ────────────────────────────────────────────────
+  if (track) {
+    track.setAttribute('tabindex', '0');
+    track.addEventListener('keydown', (e) => {
+      const step = 204; // card width + gap
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        track.scrollBy({ left: step, behavior: 'smooth' });
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        track.scrollBy({ left: -step, behavior: 'smooth' });
+      }
+    });
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 5. ACCORDION — Toggle with smooth grid-row animation
+  // ────────────────────────────────────────────────
+  const accordionItems = document.querySelectorAll('.accordion-item');
+
+  accordionItems.forEach(item => {
+    const header  = item.querySelector('.accordion-header');
+    if (!header) return;
+
+    header.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      // Close all others (single open at a time)
+      accordionItems.forEach(other => {
+        if (other !== item && other.classList.contains('open')) {
+          other.classList.remove('open');
+          other.querySelector('.accordion-header')
+               ?.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle clicked
+      item.classList.toggle('open', !isOpen);
+      header.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+
+  // ────────────────────────────────────────────────
+  // 6. PROFILE CARDS — Subtle tilt on hover (desktop)
+  // ────────────────────────────────────────────────
+  const profileCards = document.querySelectorAll('.profile-card');
+  const isDesktop    = window.matchMedia('(min-width: 1024px)').matches;
+
+  if (isDesktop) {
+    profileCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect    = card.getBoundingClientRect();
+        const cx      = rect.left + rect.width  / 2;
+        const cy      = rect.top  + rect.height / 2;
+        const rotateX = ((e.clientY - cy) / (rect.height / 2)) * -3;
+        const rotateY = ((e.clientX - cx) / (rect.width  / 2)) *  3;
+
+        card.style.transform  = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(4px)`;
+        card.style.transition = 'transform 0.05s ease-out';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform  = '';
+        card.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, border-color 0.3s ease';
+      });
+    });
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 7. TIMELINE — Auto-scroll to active card on load
+  // ────────────────────────────────────────────────
+  if (track) {
+    const activeCard = track.querySelector('.active-card');
+    if (activeCard) {
+      // Slight delay to let layout settle
+      setTimeout(() => {
+        const cardOffset = activeCard.offsetLeft;
+        const padding    = 24;
+        track.scrollTo({ left: cardOffset - padding, behavior: 'smooth' });
+      }, 600);
+    }
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 8. DEV LOG
+  // ────────────────────────────────────────────────
+  console.log('%c[HI-FEST 2026] About Us Section Loaded · Fase 2 ✓', 'color:#54ACBF; font-weight:bold;');
+
+});

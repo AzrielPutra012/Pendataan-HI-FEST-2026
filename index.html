@@ -243,3 +243,545 @@
   <script src="script.js"></script>
 </body>
 </html>
+<!-- ═══════════════════════════════════════════════════
+     SECTION: ABOUT US
+     Letakkan tepat di bawah <main id="home"> di index.html
+     Tambahkan juga link CSS & JS baru di <head> dan sebelum </body>
+═══════════════════════════════════════════════════ -->
+
+<section id="about" class="about-section py-20 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col gap-14">
+
+    <!-- ══════════════════════════════════
+         SECTION HEADER
+    ══════════════════════════════════ -->
+    <div class="section-header flex flex-col gap-3" data-aos="fadeInUp">
+      <div class="badge-pill w-fit">
+        <span class="badge-dot"></span>
+        <span class="font-mono text-[11px] text-luna-sky tracking-widest uppercase">About Us · Divisi Pendataan</span>
+      </div>
+      <h2 class="font-display text-luna-sky text-3xl lg:text-4xl font-bold leading-tight">
+        Siapa Kami<span class="text-luna-teal">?</span>
+      </h2>
+      <p class="font-body text-luna-sky/50 text-sm max-w-md leading-relaxed">
+        Divisi yang bertugas mengelola seluruh alur data peserta HI-FEST 2026 — dari pendaftaran hingga distribusi ID Card.
+      </p>
+    </div>
+
+
+    <!-- ══════════════════════════════════
+         KOMPONEN ATAS: HORIZONTAL SCROLL TIMELINE
+    ══════════════════════════════════ -->
+    <div class="timeline-section" data-aos="fadeInUp" data-aos-delay="100">
+
+      <!-- Timeline Header -->
+      <div class="flex items-center justify-between mb-5">
+        <div class="flex items-center gap-3">
+          <div class="neu-icon-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A7EBF2" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <span class="font-mono text-luna-sky/80 text-xs tracking-widest uppercase">Lini Masa Kerja 2026</span>
+        </div>
+        <!-- Scroll hint -->
+        <div class="scroll-hint hidden md:flex items-center gap-2">
+          <span class="font-body text-luna-sky/30 text-[11px]">Geser untuk lihat semua</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A7EBF2" stroke-width="2" opacity="0.35">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Timeline Scroll Container -->
+      <div class="timeline-track" id="timeline-track">
+        <div class="timeline-inner">
+
+          <!-- ── CARD 1: ACTIVE ── -->
+          <div class="timeline-card active-card">
+            <div class="tl-card-top">
+              <span class="tl-badge tl-badge-active">
+                <span class="tl-badge-dot"></span>
+                Sedang Berjalan
+              </span>
+              <span class="tl-number font-mono">#01</span>
+            </div>
+            <div class="tl-card-body">
+              <div class="tl-icon-wrap active-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A7EBF2" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
+                </svg>
+              </div>
+              <h3 class="tl-title">Rapat Akbar II</h3>
+              <p class="tl-date">20 Mei 2026</p>
+            </div>
+            <div class="tl-card-glow"></div>
+          </div>
+
+          <!-- ── CARD 2 ── -->
+          <div class="timeline-card">
+            <div class="tl-card-top">
+              <span class="tl-badge tl-badge-upcoming">Mendatang</span>
+              <span class="tl-number font-mono">#02</span>
+            </div>
+            <div class="tl-card-body">
+              <div class="tl-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#54ACBF" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 class="tl-title">Pendaftaran Batch 2</h3>
+              <p class="tl-date">22–26 Mei 2026</p>
+            </div>
+          </div>
+
+          <!-- ── CARD 3 ── -->
+          <div class="timeline-card">
+            <div class="tl-card-top">
+              <span class="tl-badge tl-badge-upcoming">Mendatang</span>
+              <span class="tl-number font-mono">#03</span>
+            </div>
+            <div class="tl-card-body">
+              <div class="tl-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#54ACBF" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
+                </svg>
+              </div>
+              <h3 class="tl-title">Extra Time</h3>
+              <p class="tl-date">27–28 Mei 2026</p>
+            </div>
+          </div>
+
+          <!-- ── CARD 4 ── -->
+          <div class="timeline-card">
+            <div class="tl-card-top">
+              <span class="tl-badge tl-badge-upcoming">Mendatang</span>
+              <span class="tl-number font-mono">#04</span>
+            </div>
+            <div class="tl-card-body">
+              <div class="tl-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#54ACBF" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/>
+                </svg>
+              </div>
+              <h3 class="tl-title">Seleksi Berkas</h3>
+              <p class="tl-date">29 Mei 2026</p>
+            </div>
+          </div>
+
+          <!-- ── CARD 5 ── -->
+          <div class="timeline-card">
+            <div class="tl-card-top">
+              <span class="tl-badge tl-badge-upcoming">Mendatang</span>
+              <span class="tl-number font-mono">#05</span>
+            </div>
+            <div class="tl-card-body">
+              <div class="tl-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#54ACBF" stroke-width="2">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                </svg>
+              </div>
+              <h3 class="tl-title">Pengumuman Berkas</h3>
+              <p class="tl-date">30 Mei 2026</p>
+            </div>
+          </div>
+
+          <!-- ── CARD 6 ── -->
+          <div class="timeline-card">
+            <div class="tl-card-top">
+              <span class="tl-badge tl-badge-upcoming">Mendatang</span>
+              <span class="tl-number font-mono">#06</span>
+            </div>
+            <div class="tl-card-body">
+              <div class="tl-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#54ACBF" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <h3 class="tl-title">Registrasi Ulang</h3>
+              <p class="tl-date">3 Juni 2026</p>
+            </div>
+          </div>
+
+          <!-- ── CARD 7 ── -->
+          <div class="timeline-card">
+            <div class="tl-card-top">
+              <span class="tl-badge tl-badge-upcoming">Mendatang</span>
+              <span class="tl-number font-mono">#07</span>
+            </div>
+            <div class="tl-card-body">
+              <div class="tl-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#54ACBF" stroke-width="2">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                </svg>
+              </div>
+              <h3 class="tl-title">Finalisasi Data</h3>
+              <p class="tl-date">4 Juni 2026</p>
+            </div>
+          </div>
+
+          <!-- ── CARD 8 ── -->
+          <div class="timeline-card">
+            <div class="tl-card-top">
+              <span class="tl-badge tl-badge-upcoming">Mendatang</span>
+              <span class="tl-number font-mono">#08</span>
+            </div>
+            <div class="tl-card-body">
+              <div class="tl-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#54ACBF" stroke-width="2">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                </svg>
+              </div>
+              <h3 class="tl-title">Pengumuman Reg Ulang</h3>
+              <p class="tl-date">5 Juni 2026</p>
+            </div>
+          </div>
+
+          <!-- ── CARD 9 ── -->
+          <div class="timeline-card">
+            <div class="tl-card-top">
+              <span class="tl-badge tl-badge-upcoming">Mendatang</span>
+              <span class="tl-number font-mono">#09</span>
+            </div>
+            <div class="tl-card-body">
+              <div class="tl-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#54ACBF" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/>
+                  <line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/>
+                </svg>
+              </div>
+              <h3 class="tl-title">Pembuatan ID Card</h3>
+              <p class="tl-date">6–8 Juni 2026</p>
+            </div>
+          </div>
+
+          <!-- ── CARD 10 ── -->
+          <div class="timeline-card">
+            <div class="tl-card-top">
+              <span class="tl-badge tl-badge-upcoming">Mendatang</span>
+              <span class="tl-number font-mono">#10</span>
+            </div>
+            <div class="tl-card-body">
+              <div class="tl-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#54ACBF" stroke-width="2">
+                  <rect x="1" y="3" width="15" height="13" rx="2"/>
+                  <polygon points="16,8 20,8 23,11 23,16 16,16 16,8"/>
+                  <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                </svg>
+              </div>
+              <h3 class="tl-title">Distribusi ID Card</h3>
+              <p class="tl-date">27 Juni 2026</p>
+            </div>
+          </div>
+
+          <!-- ── CARD 11 ── -->
+          <div class="timeline-card">
+            <div class="tl-card-top">
+              <span class="tl-badge tl-badge-upcoming">Mendatang</span>
+              <span class="tl-number font-mono">#11</span>
+            </div>
+            <div class="tl-card-body">
+              <div class="tl-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#54ACBF" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 class="tl-title">Technical Meeting</h3>
+              <p class="tl-date">1 Juli 2026</p>
+            </div>
+          </div>
+
+        </div>
+        <!-- End timeline-inner -->
+      </div>
+      <!-- End timeline-track -->
+
+      <!-- Scroll Progress Indicator -->
+      <div class="tl-progress-wrap">
+        <div class="tl-progress-bar" id="tl-progress"></div>
+      </div>
+
+    </div>
+    <!-- End Timeline Section -->
+
+
+    <!-- ══════════════════════════════════
+         KOMPONEN BAWAH: ASYMMETRIC TWO-COLUMN
+    ══════════════════════════════════ -->
+    <div class="bottom-grid grid grid-cols-1 lg:grid-cols-[40fr_60fr] gap-8 items-start">
+
+
+      <!-- ── KOLOM KIRI: Struktur Organisasi ── -->
+      <div class="org-col flex flex-col gap-5" data-aos="fadeInUp" data-aos-delay="150">
+
+        <div class="col-label flex items-center gap-3 mb-1">
+          <div class="neu-icon-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A7EBF2" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            </svg>
+          </div>
+          <span class="font-mono text-luna-sky/70 text-[11px] tracking-widest uppercase">Struktur Organisasi</span>
+        </div>
+
+        <!-- Profile Card 1 — Koor 1 -->
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <span>MA</span>
+          </div>
+          <div class="profile-info">
+            <h4 class="profile-name">Moch Azriel Putra Novendra</h4>
+            <span class="profile-role">Koordinator 1</span>
+            <span class="profile-kekel">Gamajatim</span>
+          </div>
+          <div class="profile-badge-rank rank-1">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#A7EBF2">
+              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Profile Card 2 — Koor 2 -->
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <span>NS</span>
+          </div>
+          <div class="profile-info">
+            <h4 class="profile-name">Noura Syahfa Azzahra</h4>
+            <span class="profile-role">Koordinator 2</span>
+            <span class="profile-kekel">Fosgama</span>
+          </div>
+          <div class="profile-badge-rank rank-2">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#54ACBF">
+              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Profile Card 3 — Secretary -->
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <span>FA</span>
+          </div>
+          <div class="profile-info">
+            <h4 class="profile-name">Fathan Adinata</h4>
+            <span class="profile-role">Secretary</span>
+            <span class="profile-kekel">Gamajatim</span>
+          </div>
+        </div>
+
+        <!-- Profile Card 4 — Treasurer -->
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <span>LL</span>
+          </div>
+          <div class="profile-info">
+            <h4 class="profile-name">Lidya Lorensya</h4>
+            <span class="profile-role">Treasurer</span>
+            <span class="profile-kekel">KKS</span>
+          </div>
+        </div>
+
+      </div>
+      <!-- End Kolom Kiri -->
+
+
+      <!-- ── KOLOM KANAN: Jobdesk Accordion ── -->
+      <div class="jobdesk-col flex flex-col gap-5" data-aos="fadeInUp" data-aos-delay="200">
+
+        <div class="col-label flex items-center gap-3 mb-1">
+          <div class="neu-icon-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A7EBF2" stroke-width="2">
+              <polyline points="9,11 12,14 22,4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          </div>
+          <span class="font-mono text-luna-sky/70 text-[11px] tracking-widest uppercase">Daftar Jobdesk Divisi</span>
+        </div>
+
+        <!-- Accordion Container -->
+        <div class="accordion-wrap flex flex-col gap-3" id="accordion-jobdesk">
+
+          <!-- ── Jobdesk 1 ── -->
+          <div class="accordion-item" data-index="0">
+            <button class="accordion-header" aria-expanded="false">
+              <div class="acc-left">
+                <div class="acc-num font-mono">01</div>
+                <div class="acc-title-wrap">
+                  <span class="acc-title">Membuka Pendaftaran Peserta</span>
+                  <span class="acc-tag">Administrasi</span>
+                </div>
+              </div>
+              <div class="acc-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6,9 12,15 18,9"/>
+                </svg>
+              </div>
+            </button>
+            <div class="accordion-body">
+              <div class="acc-content">
+                <p class="acc-desc">Mengelola dan membuka jalur pendaftaran peserta lomba HI-FEST 2026 melalui platform yang telah ditentukan, memastikan alur pendaftaran berjalan lancar dan terstruktur.</p>
+                <div class="acc-indicator">
+                  <span class="acc-indicator-label">Indikator Keberhasilan</span>
+                  <p class="acc-indicator-text">Formulir pendaftaran aktif, terdapat minimal 1 batch pendaftaran yang berhasil dibuka & ditutup sesuai jadwal, serta data masuk ke sistem terpusat.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Jobdesk 2 ── -->
+          <div class="accordion-item" data-index="1">
+            <button class="accordion-header" aria-expanded="false">
+              <div class="acc-left">
+                <div class="acc-num font-mono">02</div>
+                <div class="acc-title-wrap">
+                  <span class="acc-title">Verifikasi Pendaftaran</span>
+                  <span class="acc-tag">Validasi</span>
+                </div>
+              </div>
+              <div class="acc-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6,9 12,15 18,9"/>
+                </svg>
+              </div>
+            </button>
+            <div class="accordion-body">
+              <div class="acc-content">
+                <p class="acc-desc">Memeriksa dan memvalidasi kelengkapan berkas serta data pendaftar yang masuk, memastikan setiap entri data telah memenuhi persyaratan yang ditetapkan panitia.</p>
+                <div class="acc-indicator">
+                  <span class="acc-indicator-label">Indikator Keberhasilan</span>
+                  <p class="acc-indicator-text">100% berkas peserta terverifikasi sebelum batas waktu seleksi, nol data duplikat, dan laporan verifikasi tersedia untuk koordinator.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Jobdesk 3 ── -->
+          <div class="accordion-item" data-index="2">
+            <button class="accordion-header" aria-expanded="false">
+              <div class="acc-left">
+                <div class="acc-num font-mono">03</div>
+                <div class="acc-title-wrap">
+                  <span class="acc-title">Registrasi Ulang</span>
+                  <span class="acc-tag">Konfirmasi</span>
+                </div>
+              </div>
+              <div class="acc-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6,9 12,15 18,9"/>
+                </svg>
+              </div>
+            </button>
+            <div class="accordion-body">
+              <div class="acc-content">
+                <p class="acc-desc">Mengelola proses konfirmasi kehadiran peserta yang dinyatakan lolos seleksi berkas, serta memperbarui status data peserta di master database.</p>
+                <div class="acc-indicator">
+                  <span class="acc-indicator-label">Indikator Keberhasilan</span>
+                  <p class="acc-indicator-text">Seluruh peserta lolos telah melakukan registrasi ulang pada periode yang ditentukan, data status peserta terupdate di sistem secara real-time.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Jobdesk 4 ── -->
+          <div class="accordion-item" data-index="3">
+            <button class="accordion-header" aria-expanded="false">
+              <div class="acc-left">
+                <div class="acc-num font-mono">04</div>
+                <div class="acc-title-wrap">
+                  <span class="acc-title">Pembuatan ID-Card</span>
+                  <span class="acc-tag">Produksi</span>
+                </div>
+              </div>
+              <div class="acc-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6,9 12,15 18,9"/>
+                </svg>
+              </div>
+            </button>
+            <div class="accordion-body">
+              <div class="acc-content">
+                <p class="acc-desc">Merancang dan memproduksi kartu identitas peserta HI-FEST 2026 berdasarkan data final yang telah terverifikasi, memastikan akurasi data pada setiap kartu yang dicetak.</p>
+                <div class="acc-indicator">
+                  <span class="acc-indicator-label">Indikator Keberhasilan</span>
+                  <p class="acc-indicator-text">ID Card seluruh peserta tercetak dan terverifikasi tanpa error data sebelum tanggal distribusi (27 Juni 2026), tingkat akurasi data 100%.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Jobdesk 5 ── -->
+          <div class="accordion-item" data-index="4">
+            <button class="accordion-header" aria-expanded="false">
+              <div class="acc-left">
+                <div class="acc-num font-mono">05</div>
+                <div class="acc-title-wrap">
+                  <span class="acc-title">Resepsionis Peserta Lomba</span>
+                  <span class="acc-tag">On-site</span>
+                </div>
+              </div>
+              <div class="acc-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6,9 12,15 18,9"/>
+                </svg>
+              </div>
+            </button>
+            <div class="accordion-body">
+              <div class="acc-content">
+                <p class="acc-desc">Bertugas menyambut dan melayani peserta saat check-in di hari pelaksanaan lomba, memastikan proses penerimaan peserta berjalan tertib dan efisien.</p>
+                <div class="acc-indicator">
+                  <span class="acc-indicator-label">Indikator Keberhasilan</span>
+                  <p class="acc-indicator-text">Waktu antrian rata-rata di bawah 5 menit per peserta, zero error pada rekap absensi kehadiran, dan seluruh peserta terlayani sesuai protokol acara.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Jobdesk 6 ── -->
+          <div class="accordion-item" data-index="5">
+            <button class="accordion-header" aria-expanded="false">
+              <div class="acc-left">
+                <div class="acc-num font-mono">06</div>
+                <div class="acc-title-wrap">
+                  <span class="acc-title">Survei Kepuasan</span>
+                  <span class="acc-tag">Evaluasi</span>
+                </div>
+              </div>
+              <div class="acc-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6,9 12,15 18,9"/>
+                </svg>
+              </div>
+            </button>
+            <div class="accordion-body">
+              <div class="acc-content">
+                <p class="acc-desc">Menyebarkan, mengumpulkan, dan menganalisis hasil survei kepuasan peserta pasca-acara sebagai bahan evaluasi dan peningkatan kualitas HI-FEST di masa mendatang.</p>
+                <div class="acc-indicator">
+                  <span class="acc-indicator-label">Indikator Keberhasilan</span>
+                  <p class="acc-indicator-text">Response rate survei minimal 80% dari total peserta, laporan analisis kepuasan tersedia dalam 3 hari setelah acara, dan rekomendasi perbaikan terdokumentasi.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- End accordion-wrap -->
+
+      </div>
+      <!-- End Kolom Kanan -->
+
+    </div>
+    <!-- End bottom-grid -->
+
+  </div>
+</section>
+
+<!-- Link stylesheet & script About Us -->
+<!-- Tambahkan di <head>: <link rel="stylesheet" href="about-style.css" /> -->
+<!-- Tambahkan sebelum </body>: <script src="about-script.js"></script> -->

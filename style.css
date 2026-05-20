@@ -625,3 +625,556 @@ body {
   background: rgba(84, 172, 191, 0.3);
   color: var(--luna-sky);
 }
+/* ═══════════════════════════════════════════════════
+   about-style.css — HI-FEST 2026 | Section About Us
+   Impor setelah style.css di <head>
+═══════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════
+   ABOUT SECTION — Base
+══════════════════════════════════════════════════ */
+.about-section {
+  position: relative;
+  background: var(--luna-base);
+  z-index: 1;
+}
+
+/* Section fade-in utility */
+[data-aos="fadeInUp"] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+[data-aos="fadeInUp"].aos-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-aos-delay="100"].aos-visible { transition-delay: 0.10s; }
+[data-aos-delay="150"].aos-visible { transition-delay: 0.15s; }
+[data-aos-delay="200"].aos-visible { transition-delay: 0.20s; }
+
+/* Column label shared */
+.col-label {
+  margin-bottom: 4px;
+}
+
+
+/* ══════════════════════════════════════════════════
+   HORIZONTAL TIMELINE
+══════════════════════════════════════════════════ */
+.timeline-track {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 12px;
+  cursor: grab;
+}
+.timeline-track:active { cursor: grabbing; }
+
+/* Hide native scrollbar */
+.timeline-track::-webkit-scrollbar { display: none; }
+.timeline-track { -ms-overflow-style: none; scrollbar-width: none; }
+
+.timeline-inner {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  padding: 4px 4px 8px 4px;
+}
+
+/* ─── Timeline Card ─── */
+.timeline-card {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 190px;
+  background: rgba(2, 56, 89, 0.55);
+  border: 1px solid rgba(167, 235, 242, 0.08);
+  border-radius: 18px;
+  padding: 16px;
+  backdrop-filter: blur(12px);
+  box-shadow:
+    5px 5px 14px rgba(0, 6, 18, 0.5),
+    -3px -3px 8px rgba(167, 235, 242, 0.035);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    8px 10px 22px rgba(0, 6, 18, 0.6),
+    -4px -4px 12px rgba(167, 235, 242, 0.05);
+  border-color: rgba(84, 172, 191, 0.2);
+}
+
+/* ─── Active Card (Rapat Akbar II) ─── */
+.active-card {
+  border: 1px solid rgba(167, 235, 242, 0.35);
+  background: linear-gradient(145deg, rgba(2, 56, 89, 0.85), rgba(1, 35, 70, 0.9));
+  box-shadow:
+    5px 5px 14px rgba(0, 6, 18, 0.55),
+    -3px -3px 8px rgba(167, 235, 242, 0.06),
+    0 0 24px rgba(167, 235, 242, 0.06);
+}
+
+.active-card:hover {
+  border-color: rgba(167, 235, 242, 0.5);
+  box-shadow:
+    8px 10px 22px rgba(0, 6, 18, 0.65),
+    -4px -4px 12px rgba(167, 235, 242, 0.07),
+    0 0 36px rgba(167, 235, 242, 0.08);
+}
+
+/* Glow sweep effect */
+.tl-card-glow {
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(167, 235, 242, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Card Top Row */
+.tl-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tl-number {
+  font-size: 10px;
+  color: rgba(167, 235, 242, 0.2);
+  letter-spacing: 0.05em;
+}
+
+/* Badge */
+.tl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
+.tl-badge-active {
+  background: rgba(84, 172, 191, 0.15);
+  border: 1px solid rgba(84, 172, 191, 0.35);
+  color: var(--luna-teal);
+}
+
+.tl-badge-upcoming {
+  background: rgba(167, 235, 242, 0.05);
+  border: 1px solid rgba(167, 235, 242, 0.1);
+  color: rgba(167, 235, 242, 0.4);
+}
+
+.tl-badge-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--luna-teal);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Card Body */
+.tl-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Icon Wrap (Neumorphic) */
+.tl-icon-wrap {
+  width: 34px;
+  height: 34px;
+  background: var(--luna-card);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--neu-shadow-sm);
+}
+
+.active-icon {
+  background: rgba(2, 56, 89, 0.9);
+  box-shadow:
+    3px 3px 8px rgba(0, 6, 18, 0.55),
+    -2px -2px 6px rgba(167, 235, 242, 0.06),
+    0 0 10px rgba(167, 235, 242, 0.08);
+}
+
+.tl-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--luna-sky);
+  line-height: 1.3;
+}
+
+.tl-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: rgba(84, 172, 191, 0.7);
+  letter-spacing: 0.03em;
+}
+
+/* Progress Bar */
+.tl-progress-wrap {
+  height: 2px;
+  background: rgba(167, 235, 242, 0.07);
+  border-radius: 2px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.tl-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--luna-teal), var(--luna-sky));
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+
+/* ══════════════════════════════════════════════════
+   PROFILE CARDS (Neumorphic)
+══════════════════════════════════════════════════ */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--luna-card);
+  border: 1px solid rgba(167, 235, 242, 0.07);
+  border-radius: 16px;
+  padding: 14px 16px;
+  position: relative;
+  box-shadow:
+    6px 6px 16px rgba(0, 6, 18, 0.55),
+    -3px -3px 9px rgba(167, 235, 242, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.profile-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    9px 9px 22px rgba(0, 6, 18, 0.65),
+    -4px -4px 12px rgba(167, 235, 242, 0.055);
+  border-color: rgba(84, 172, 191, 0.18);
+}
+
+/* Avatar Circle — Neumorphic Inset */
+.profile-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--luna-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow:
+    inset 3px 3px 7px rgba(0, 6, 18, 0.55),
+    inset -2px -2px 5px rgba(167, 235, 242, 0.06);
+}
+
+.profile-avatar span {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--luna-sky);
+  letter-spacing: 0.05em;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--luna-sky);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-role {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: rgba(167, 235, 242, 0.45);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.profile-kekel {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--luna-teal);
+}
+
+/* Rank Badge (top-right icon) */
+.profile-badge-rank {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rank-1 {
+  background: rgba(167, 235, 242, 0.08);
+  border: 1px solid rgba(167, 235, 242, 0.15);
+  box-shadow: var(--neu-shadow-sm);
+}
+
+.rank-2 {
+  background: rgba(84, 172, 191, 0.08);
+  border: 1px solid rgba(84, 172, 191, 0.15);
+  box-shadow: var(--neu-shadow-sm);
+}
+
+
+/* ══════════════════════════════════════════════════
+   ACCORDION JOBDESK
+══════════════════════════════════════════════════ */
+.accordion-item {
+  background: var(--luna-card);
+  border: 1px solid rgba(167, 235, 242, 0.07);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    5px 5px 14px rgba(0, 6, 18, 0.45),
+    -3px -3px 8px rgba(167, 235, 242, 0.03);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.accordion-item.open {
+  border-color: rgba(38, 101, 140, 0.45);
+  box-shadow:
+    5px 5px 16px rgba(0, 6, 18, 0.55),
+    -3px -3px 8px rgba(167, 235, 242, 0.04),
+    0 0 20px rgba(38, 101, 140, 0.1);
+}
+
+/* ─── Accordion Header (Neumorphic button) ─── */
+.accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 18px;
+  background: var(--luna-card);
+  border: none;
+  cursor: pointer;
+  gap: 12px;
+  transition: background 0.3s ease;
+  outline: none;
+}
+
+.accordion-item.open .accordion-header {
+  background: rgba(38, 101, 140, 0.35);
+}
+
+.accordion-header:hover {
+  background: rgba(167, 235, 242, 0.04);
+}
+.accordion-item.open .accordion-header:hover {
+  background: rgba(38, 101, 140, 0.4);
+}
+
+.acc-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+/* Number badge */
+.acc-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(84, 172, 191, 0.5);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  width: 22px;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+.accordion-item.open .acc-num {
+  color: var(--luna-teal);
+}
+
+.acc-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.acc-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: rgba(167, 235, 242, 0.75);
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+.accordion-item.open .acc-title {
+  color: var(--luna-sky);
+}
+
+.acc-tag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: rgba(84, 172, 191, 0.5);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+.accordion-item.open .acc-tag {
+  color: rgba(84, 172, 191, 0.8);
+}
+
+/* Chevron */
+.acc-chevron {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--luna-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: rgba(167, 235, 242, 0.35);
+  box-shadow: var(--neu-shadow-sm);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s ease,
+              background 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.accordion-item.open .acc-chevron {
+  transform: rotate(180deg);
+  color: var(--luna-teal);
+  background: rgba(38, 101, 140, 0.4);
+  box-shadow: var(--neu-shadow-inset);
+}
+
+/* ─── Accordion Body ─── */
+.accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-item.open .accordion-body {
+  grid-template-rows: 1fr;
+}
+
+.acc-content {
+  overflow: hidden;
+  padding: 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.accordion-item.open .acc-content {
+  padding: 4px 18px 18px;
+}
+
+.acc-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(167, 235, 242, 0.5);
+  line-height: 1.7;
+}
+
+/* ─── Indikator Keberhasilan ─── */
+.acc-indicator {
+  background: rgba(1, 20, 48, 0.5);
+  border: 1px solid rgba(167, 235, 242, 0.1);
+  border-left: 3px solid var(--luna-sky);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.acc-indicator-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--luna-sky);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.acc-indicator-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--luna-sky);
+  line-height: 1.65;
+  opacity: 0.85;
+}
+
+
+/* ══════════════════════════════════════════════════
+   SCROLL HINT
+══════════════════════════════════════════════════ */
+.scroll-hint {
+  animation: scrollHintPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollHintPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.8; }
+}
+
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline-card { width: 170px; }
+  .about-section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .profile-name { font-size: 12px; }
+}
+
+@media (max-width: 480px) {
+  .timeline-card { width: 155px; }
+}
