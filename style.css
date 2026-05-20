@@ -1179,3 +1179,696 @@ body {
 @media (max-width: 480px) {
   .timeline-card { width: 155px; }
 }
+
+/* ═══════════════════════════════════════════════════
+   alldata-style.css — HI-FEST 2026 | All Data Section
+   Impor setelah about-style.css di <head>
+═══════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════
+   ALL DATA SECTION — Base
+══════════════════════════════════════════════════ */
+.alldata-section {
+  position: relative;
+  background: var(--luna-base);
+  z-index: 1;
+}
+
+/* Divider from About */
+.alldata-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(167,235,242,0.1), transparent);
+}
+
+
+/* ══════════════════════════════════════════════════
+   LAST UPDATE BADGE
+══════════════════════════════════════════════════ */
+.last-update-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--luna-card);
+  border: 1px solid rgba(167,235,242,0.07);
+  border-radius: 14px;
+  box-shadow: var(--neu-shadow-sm);
+}
+
+
+/* ══════════════════════════════════════════════════
+   BENTO CARDS — Shared Base
+══════════════════════════════════════════════════ */
+.bento-card-sm,
+.bento-card-lg {
+  background: linear-gradient(145deg, rgba(2,56,89,0.88), rgba(1,28,64,0.95));
+  border: 1px solid rgba(167,235,242,0.08);
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow:
+    10px 10px 28px rgba(0,6,18,0.58),
+    -5px -5px 14px rgba(167,235,242,0.035),
+    inset 0 1px 0 rgba(167,235,242,0.06);
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: border-color 0.3s ease;
+}
+
+.bento-card-sm:hover,
+.bento-card-lg:hover {
+  border-color: rgba(84,172,191,0.15);
+}
+
+.bento-sm-header,
+.bento-lg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.bento-sm-header > div:first-child,
+.bento-lg-header > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chart-legend-mini {
+  flex-shrink: 0;
+}
+
+
+/* ══════════════════════════════════════════════════
+   DONUT CHART (Kartu 1 — Kategori Lomba)
+══════════════════════════════════════════════════ */
+.donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+}
+
+.donut-container {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+}
+
+.donut-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.donut-seg {
+  transition: stroke-dasharray 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.donut-total-text {
+  transition: all 0.5s ease;
+}
+
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.legend-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: rgba(167,235,242,0.5);
+  line-height: 1.2;
+}
+
+.legend-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--luna-sky);
+  letter-spacing: -0.02em;
+}
+
+
+/* ══════════════════════════════════════════════════
+   HORIZONTAL PROGRESS BAR (Kartu 2 — Kategori Peserta)
+══════════════════════════════════════════════════ */
+.peserta-bars { width: 100%; }
+
+.hbar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hbar-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hbar-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hbar-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11.5px;
+  color: rgba(167,235,242,0.65);
+}
+
+.hbar-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--luna-sky);
+  letter-spacing: -0.01em;
+}
+
+.hbar-track {
+  width: 100%;
+  height: 7px;
+  background: rgba(167,235,242,0.06);
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: var(--neu-shadow-inset);
+}
+
+.hbar-fill {
+  height: 100%;
+  width: var(--pct);
+  border-radius: 50px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hbar-pct {
+  font-size: 9px;
+  color: rgba(167,235,242,0.3);
+  letter-spacing: 0.05em;
+  align-self: flex-end;
+}
+
+.peserta-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(1,20,48,0.4);
+  border: 1px solid rgba(167,235,242,0.07);
+  border-radius: 10px;
+  margin-top: 4px;
+  box-shadow: var(--neu-shadow-inset);
+}
+
+
+/* ══════════════════════════════════════════════════
+   HORIZONTAL BAR CHART (Jenis Lomba)
+══════════════════════════════════════════════════ */
+.hbar-chart {
+  width: 100%;
+}
+
+.hbar-chart-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 44px;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.hbar-chart-row:hover {
+  background: rgba(167,235,242,0.03);
+}
+
+.hbar-chart-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11.5px;
+  color: rgba(167,235,242,0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hbar-chart-icon {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.hbar-chart-track {
+  height: 10px;
+  background: rgba(167,235,242,0.05);
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: var(--neu-shadow-inset);
+}
+
+.hbar-chart-bar {
+  height: 100%;
+  width: var(--w);
+  border-radius: 50px;
+  transition: width 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.sport-bar {
+  background: linear-gradient(90deg, #A7EBF2, rgba(167,235,242,0.65));
+  box-shadow: 0 0 8px rgba(167,235,242,0.2);
+}
+
+.edu-bar {
+  background: linear-gradient(90deg, #54ACBF, rgba(84,172,191,0.65));
+  box-shadow: 0 0 8px rgba(84,172,191,0.2);
+}
+
+.hbar-chart-count {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(167,235,242,0.55);
+  text-align: right;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.hbar-chart-row.top-row .hbar-chart-count {
+  color: var(--luna-sky);
+}
+.hbar-chart-row.top-row .hbar-chart-label {
+  color: var(--luna-sky);
+}
+
+
+/* ══════════════════════════════════════════════════
+   VERTICAL COLUMN CHART (Jenjang Pendidikan)
+══════════════════════════════════════════════════ */
+.vchart-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 240px;
+}
+
+.vchart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 220px;
+  padding: 0 8px;
+  position: relative;
+  z-index: 1;
+  gap: 6px;
+}
+
+.vcol-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  height: 100%;
+}
+
+.vcol-bar-wrap {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.vcol-count {
+  font-size: 9px;
+  color: rgba(167,235,242,0.4);
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+  min-height: 12px;
+  text-align: center;
+}
+
+.vcol-item.tallest .vcol-count {
+  color: var(--luna-sky);
+}
+
+.vcol-bar-track {
+  width: 100%;
+  height: 100%;
+  max-height: 180px;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 6px 6px 0 0;
+  overflow: hidden;
+}
+
+.vcol-bar {
+  width: 100%;
+  height: var(--h);
+  background: var(--color);
+  border-radius: 5px 5px 0 0;
+  transition: height 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(167,235,242,0.08);
+  position: relative;
+}
+
+.vcol-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 5px 5px 0 0;
+}
+
+.vcol-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  color: rgba(167,235,242,0.35);
+  text-align: center;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  padding-bottom: 2px;
+}
+
+/* Y-axis grid */
+.vchart-grid {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  right: 8px;
+  bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.vchart-gridline {
+  width: 100%;
+  height: 1px;
+  background: rgba(167,235,242,0.05);
+  position: relative;
+}
+
+.vchart-gridlabel {
+  position: absolute;
+  right: 0;
+  top: -8px;
+  font-size: 8px;
+  color: rgba(167,235,242,0.2);
+}
+
+
+/* ══════════════════════════════════════════════════
+   DATA TABLE (Kekeluargaan)
+══════════════════════════════════════════════════ */
+.tbl-total-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.tbl-grand-total {
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+}
+
+/* Controls */
+.tbl-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.tbl-search-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tbl-search-icon {
+  position: absolute;
+  left: 10px;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.tbl-search-input {
+  width: 100%;
+  background: rgba(1,20,48,0.55);
+  border: 1px solid rgba(167,235,242,0.1);
+  border-radius: 10px;
+  padding: 7px 10px 7px 30px;
+  font-size: 11px;
+  color: var(--luna-sky);
+  outline: none;
+  box-shadow: var(--neu-shadow-inset);
+  transition: border-color 0.25s ease;
+  caret-color: var(--luna-teal);
+}
+
+.tbl-search-input::placeholder {
+  color: rgba(167,235,242,0.2);
+}
+
+.tbl-search-input:focus {
+  border-color: rgba(84,172,191,0.3);
+}
+
+/* Neu button */
+.neu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  background: var(--luna-card);
+  border: 1px solid rgba(167,235,242,0.08);
+  border-radius: 10px;
+  color: rgba(167,235,242,0.55);
+  font-family: 'Space Mono', monospace;
+  cursor: pointer;
+  box-shadow: var(--neu-shadow-sm);
+  transition: box-shadow 0.25s ease, transform 0.2s ease, background 0.25s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.neu-btn:hover {
+  box-shadow:
+    5px 5px 12px var(--neu-dark),
+    -3px -3px 8px var(--neu-light);
+  transform: translateY(-1px);
+  color: var(--luna-sky);
+}
+
+.neu-btn:active {
+  box-shadow: var(--neu-shadow-inset);
+  transform: translateY(0);
+}
+
+/* Table Scroll Wrapper */
+.tbl-scroll-wrap {
+  overflow-y: auto;
+  max-height: 280px;
+  border: 1px solid rgba(167,235,242,0.07);
+  border-radius: 14px;
+  box-shadow: var(--neu-shadow-inset);
+}
+
+/* Custom scrollbar inside table */
+.tbl-scroll-wrap::-webkit-scrollbar { width: 4px; }
+.tbl-scroll-wrap::-webkit-scrollbar-track { background: transparent; }
+.tbl-scroll-wrap::-webkit-scrollbar-thumb {
+  background: rgba(84,172,191,0.25);
+  border-radius: 4px;
+}
+.tbl-scroll-wrap::-webkit-scrollbar-thumb:hover {
+  background: rgba(84,172,191,0.45);
+}
+
+/* Table */
+.kekeluargaan-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tbl-thead-row {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(1,28,64,0.97);
+  backdrop-filter: blur(8px);
+}
+
+.tbl-th {
+  padding: 10px 12px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(167,235,242,0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: left;
+  border-bottom: 1px solid rgba(167,235,242,0.08);
+}
+
+.tbl-th-no    { width: 34px; text-align: center; }
+.tbl-th-total { width: 60px; text-align: right; }
+
+/* Zebra rows */
+.tbl-row { transition: background 0.2s ease; }
+
+.tbl-row-even { background: rgba(2,56,89,0.25); }
+.tbl-row-odd  { background: rgba(1,20,48,0.3); }
+
+.tbl-row:hover { background: rgba(84,172,191,0.07); }
+
+.tbl-row.top-entry { background: rgba(84,172,191,0.08); }
+.tbl-row.top-entry .tbl-count { color: var(--luna-sky) !important; }
+
+.tbl-td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(167,235,242,0.04);
+  vertical-align: middle;
+}
+
+.tbl-td-no {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: rgba(167,235,242,0.25);
+  text-align: center;
+}
+
+.tbl-name-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tbl-name-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(167,235,242,0.7);
+}
+
+/* Mini progress bar inside cell */
+.tbl-mini-bar-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(167,235,242,0.06);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.tbl-mini-bar {
+  height: 100%;
+  width: var(--w);
+  background: linear-gradient(90deg, rgba(38,101,140,0.7), rgba(84,172,191,0.5));
+  border-radius: 50px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tbl-td-count { text-align: right; }
+
+.tbl-count {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(167,235,242,0.45);
+  letter-spacing: -0.01em;
+}
+
+/* Empty state */
+.tbl-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+/* Table Footer */
+.tbl-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px 0;
+}
+
+
+/* ══════════════════════════════════════════════════
+   DEV NOTE BANNER
+══════════════════════════════════════════════════ */
+.dev-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: rgba(2,56,89,0.3);
+  border: 1px dashed rgba(167,235,242,0.07);
+  border-radius: 12px;
+}
+
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 1280px) {
+  .hbar-chart-row {
+    grid-template-columns: 110px 1fr 38px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .top-grid    { grid-template-columns: 1fr; }
+  .bottom-grid { grid-template-columns: 1fr; }
+  .mini-grid   { grid-template-columns: 1fr 1fr; }
+  .vchart-bars { height: 180px; }
+}
+
+@media (max-width: 640px) {
+  .mini-grid { grid-template-columns: 1fr; }
+  .hbar-chart-row { grid-template-columns: 95px 1fr 34px; }
+  .hbar-chart-label { font-size: 10px; }
+  .tbl-scroll-wrap { max-height: 240px; }
+  .bento-card-sm,
+  .bento-card-lg { padding: 16px; }
+}
+
+@media (max-width: 400px) {
+  .donut-wrap { flex-direction: column; }
+  .donut-container { width: 90px; height: 90px; }
+}
