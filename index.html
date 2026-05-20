@@ -1,574 +1,245 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Pendataan HI-FEST 2026</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind Custom Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'midnight': '#011C40',
-                        'navy': '#023859',
-                        'teal': '#54ACBF',
-                        'electric': '#A7EBF2',
-                        'ocean': '#26658C',
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divisi Pendataan — HI-FEST 2026</title>
 
-    <!-- Custom CSS for UI/UX Styling (Glassmorphism & Neumorphism) -->
-    <style>
-        body {
-            background-color: #011C40; /* Midnight Blue */
-        }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
-        /* 1. Glassmorphism untuk Top Navbar */
-        .glass-nav {
-            background: rgba(2, 56, 89, 0.65); /* Deep Navy semi-transparent */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(84, 172, 191, 0.15); /* Soft teal border */
-        }
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'luna-base':      '#011C40',
+            'luna-card':      '#023859',
+            'luna-teal':      '#54ACBF',
+            'luna-sky':       '#A7EBF2',
+            'luna-ocean':     '#26658C',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body:    ['"DM Sans"', 'sans-serif'],
+            mono:    ['"Space Mono"', 'monospace'],
+          },
+          borderRadius: {
+            '2xl':  '1rem',
+            '3xl':  '1.5rem',
+            '4xl':  '2rem',
+          },
+        },
+      },
+    }
+  </script>
 
-        /* 2. Dark Neumorphism (Soft UI) untuk Bento Card */
-        .neumorphism-card {
-            background: #023859; /* Deep Navy */
-            /* Bayangan gelap di kanan bawah, bayangan terang (biru laut) di kiri atas */
-            box-shadow: 12px 12px 24px rgba(0, 15, 35, 0.7),
-                       -8px -8px 24px rgba(38, 101, 140, 0.2);
-            border: 1px solid rgba(38, 101, 140, 0.1); /* Ocean Blue border halus */
-        }
-
-        /* 3. Decorative Quote Style */
-        .decorative-quote {
-            position: relative;
-        }
-        .decorative-quote::before {
-            content: '"';
-            position: absolute;
-            top: -2.5rem;
-            left: -1rem;
-            font-size: 6rem;
-            font-family: serif;
-            color: rgba(84, 172, 191, 0.15); /* Teal dengan opacity rendah */
-            z-index: -1;
-        }
-
-        /* Animated Underline Hover untuk Navbar */
-        .hover-underline-animation {
-            display: inline-block;
-            position: relative;
-        }
-        .hover-underline-animation::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: #A7EBF2; /* Electric Sky Blue */
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-        .hover-underline-animation:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-    </style>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="text-electric font-sans selection:bg-teal selection:text-midnight overflow-x-hidden">
 
-    <!-- ==============================================
-         1. TOP NAVBAR (Sticky/Glassmorphism)
-         ============================================== -->
-    <nav class="fixed w-full top-0 z-50 glass-nav transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-            
-            <!-- Logo / Nama Divisi -->
-            <div class="flex items-center gap-3 cursor-default">
-                <!-- Neumorphic Icon Placeholder -->
-                <div class="w-10 h-10 rounded-xl bg-navy shadow-[4px_4px_8px_rgba(0,15,35,0.7),-2px_-2px_6px_rgba(38,101,140,0.3)] flex items-center justify-center">
-                    <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
-                    </svg>
-                </div>
-                <h1 class="text-lg lg:text-xl font-bold tracking-wide text-electric">
-                    Divisi Pendataan <span class="text-teal font-normal">HI-FEST 2026</span>
-                </h1>
-            </div>
+<body class="bg-luna-base font-body overflow-x-hidden">
 
-            <!-- Horizontal Navigation Menu (Desktop) -->
-            <ul class="hidden md:flex items-center gap-10">
-                <li><a href="#" class="text-electric font-semibold hover-underline-animation transition-colors">Home</a></li>
-                <li><a href="#" class="text-ocean hover:text-electric font-semibold hover-underline-animation transition-colors">About Us</a></li>
-                <li><a href="#" class="text-ocean hover:text-electric font-semibold hover-underline-animation transition-colors">All Data</a></li>
-            </ul>
+  <!-- ═══════════════════════════════════════
+       TOP NAVBAR
+  ═══════════════════════════════════════ -->
+  <header id="navbar" class="navbar fixed top-0 left-0 right-0 z-50">
+    <nav class="nav-inner max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
-            <!-- Mobile Menu Button (Hamburger) -->
-            <button class="md:hidden text-electric focus:outline-none">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
+      <!-- Logo / Nama Divisi -->
+      <div class="logo-wrap flex items-center gap-3">
+        <!-- Neumorphic Icon Badge -->
+        <div class="logo-badge neu-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1.5" fill="#A7EBF2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5" fill="#54ACBF" opacity="0.7"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5" fill="#54ACBF" opacity="0.7"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5" fill="#A7EBF2" opacity="0.4"/>
+          </svg>
         </div>
+        <div>
+          <span class="logo-title font-display text-luna-sky text-sm font-bold leading-tight block">Divisi Pendataan</span>
+          <span class="logo-sub font-mono text-luna-teal text-[10px] tracking-widest uppercase">HI-FEST 2026</span>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation Menu -->
+      <ul class="nav-menu hidden md:flex items-center gap-1">
+        <li><a href="#home"    class="nav-link active" data-label="Home">Home</a></li>
+        <li><a href="#about"   class="nav-link"        data-label="About Us">About Us</a></li>
+        <li><a href="#alldata" class="nav-link"        data-label="All Data">All Data</a></li>
+      </ul>
+
+      <!-- Mobile Hamburger -->
+      <button id="hamburger" class="md:hidden neu-icon flex flex-col gap-[5px] items-center justify-center w-10 h-10" aria-label="Toggle Menu">
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+      </button>
     </nav>
 
-    <!-- ==============================================
-         2. HERO SECTION (Asymmetric Two-Column Layout)
-         ============================================== -->
-    <!-- h-screen untuk pastikan konten termuat di satu layar (Above the fold) -->
-    <main class="w-full min-h-screen flex items-center pt-20 px-6 lg:px-12 max-w-screen-2xl mx-auto">
-        <div class="flex flex-col lg:flex-row w-full items-center justify-between gap-12 lg:gap-8">
-            
-            <!-- Kolom Kiri: Area Sambutan (45%) -->
-            <div class="w-full lg:w-[45%] flex flex-col justify-center mt-10 lg:mt-0 z-10">
-                <!-- Typography Hierarchy -->
-                <h1 class="text-6xl lg:text-8xl font-extrabold text-electric mb-2 tracking-tight">
-                    Bonjour<span class="text-teal">.</span>
-                </h1>
-                
-                <h2 class="text-2xl lg:text-3xl font-semibold text-teal mb-8 tracking-wide">
-                    Divisi Pendataan HI-FEST 2026
-                </h2>
-                
-                <!-- Decorative Quote Layout -->
-                <div class="pl-6 border-l-4 border-teal decorative-quote">
-                    <p class="text-xl lg:text-2xl text-ocean font-medium italic leading-relaxed">
-                        "Data bukan hanya sekedar angka, tapi selalu ada cerita dibaliknya."
-                    </p>
-                </div>
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="mobile-menu hidden md:hidden">
+      <ul class="flex flex-col px-6 py-4 gap-2">
+        <li><a href="#home"    class="mob-link">Home</a></li>
+        <li><a href="#about"   class="mob-link">About Us</a></li>
+        <li><a href="#alldata" class="mob-link">All Data</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════ -->
+  <main id="home" class="hero-section min-h-screen flex items-center pt-16">
+
+    <!-- Background Decorative Orbs -->
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="orb orb-3" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-6 w-full">
+
+      <!-- Asymmetric Two-Column Layout -->
+      <div class="hero-grid grid grid-cols-1 lg:grid-cols-[45fr_55fr] gap-10 lg:gap-16 items-center">
+
+        <!-- ── KOLOM KIRI: Area Sambutan ── -->
+        <div class="hero-left flex flex-col gap-6">
+
+          <!-- Badge Kecil -->
+          <div class="badge-pill">
+            <span class="badge-dot"></span>
+            <span class="font-mono text-[11px] text-luna-sky tracking-widest uppercase">Live Dashboard · 2026</span>
+          </div>
+
+          <!-- H1 Bonjour -->
+          <div class="headline-wrap">
+            <h1 class="font-display text-luna-sky leading-none select-none">
+              <span class="bonjour-text">Bonjour</span>
+              <span class="bonjour-accent">.</span>
+            </h1>
+          </div>
+
+          <!-- Sub-judul -->
+          <div class="subtitle-block">
+            <p class="font-body font-light text-luna-sky/60 text-xs tracking-[0.25em] uppercase mb-1">Dashboard Internal</p>
+            <h2 class="font-body font-medium text-luna-teal text-lg lg:text-xl leading-snug">
+              Divisi Pendataan<br/>
+              <span class="text-luna-sky/80">HI-FEST 2026</span>
+            </h2>
+          </div>
+
+          <!-- Decorative Quote -->
+          <div class="quote-card">
+            <div class="quote-bar" aria-hidden="true"></div>
+            <div class="quote-content">
+              <span class="quote-mark font-display">&ldquo;</span>
+              <p class="font-display italic text-luna-sky/90 text-base lg:text-lg leading-relaxed">
+                Data bukan hanya sekedar angka,<br/>
+                tapi selalu ada cerita<br/>
+                <span class="text-luna-teal not-italic font-bold">dibaliknya.</span>
+              </p>
             </div>
+          </div>
 
-            <!-- Kolom Kanan: Area Visual (55%) -->
-            <div class="w-full lg:w-[55%] h-[50vh] lg:h-[70vh] flex items-center justify-center p-2 lg:p-6">
-                <!-- Bento Box Card dengan Dark Neumorphism -->
-                <div class="neumorphism-card w-full h-full rounded-[2.5rem] flex flex-col items-center justify-center p-8 relative overflow-hidden group">
-                    
-                    <!-- Dekorasi Lingkaran Latar Belakang (Estetika) -->
-                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-teal opacity-10 rounded-full blur-2xl"></div>
-                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-electric opacity-10 rounded-full blur-2xl"></div>
-
-                    <!-- Placeholder Kontainer Grafik -->
-                    <div class="w-24 h-24 rounded-full border-2 border-dashed border-ocean flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 ease-out">
-                        <svg class="w-10 h-10 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
-                        </svg>
-                    </div>
-                    
-                    <h3 class="text-2xl font-bold text-electric mb-2 text-center">Data Statistik Pendaftar</h3>
-                    <p class="text-ocean text-center font-medium max-w-sm">
-                        Area visualisasi interaktif untuk live update master database (Placeholder Chart)
-                    </p>
-                    
-                    <!-- Badge Status Update -->
-                    <div class="mt-8 px-4 py-2 rounded-full bg-[#011C40] border border-ocean shadow-inner flex items-center gap-2">
-                        <span class="w-2.5 h-2.5 rounded-full bg-teal animate-pulse"></span>
-                        <span class="text-sm text-teal font-semibold">Live System Standby</span>
-                    </div>
-
-                </div>
-            </div>
+          <!-- CTA Buttons -->
+          <div class="cta-row flex items-center gap-4 mt-2">
+            <a href="#alldata" class="btn-primary">
+              <span>Lihat Semua Data</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#about" class="btn-ghost">Tentang Kami</a>
+          </div>
 
         </div>
-    </main>
 
+
+        <!-- ── KOLOM KANAN: Bento Box Card ── -->
+        <div class="hero-right">
+          <div class="bento-card">
+
+            <!-- Card Header -->
+            <div class="bento-header">
+              <div class="flex items-center gap-3">
+                <div class="neu-icon-sm">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A7EBF2" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                </div>
+                <div>
+                  <p class="font-mono text-luna-sky text-[11px] tracking-widest uppercase">Statistik Utama</p>
+                  <p class="font-body text-luna-sky/50 text-[10px]">Total Pendaftar — Realtime</p>
+                </div>
+              </div>
+              <div class="status-badge">
+                <span class="pulse-dot"></span>
+                <span class="font-mono text-[10px] text-luna-teal">LIVE</span>
+              </div>
+            </div>
+
+            <!-- Chart Placeholder Area -->
+            <div class="chart-placeholder">
+
+              <!-- Big Stat Number -->
+              <div class="stat-display">
+                <p class="font-mono text-luna-sky/30 text-xs tracking-widest uppercase mb-2">Total Pendaftar</p>
+                <div class="stat-number font-display text-luna-sky">
+                  <span class="counter" data-target="0">—</span>
+                </div>
+                <p class="font-body text-luna-teal/70 text-xs mt-1">Grafik akan ditampilkan di sini</p>
+              </div>
+
+              <!-- Fake Chart Bars (visual placeholder) -->
+              <div class="fake-chart" aria-hidden="true">
+                <div class="chart-bars">
+                  <div class="bar" style="--h:35%"></div>
+                  <div class="bar" style="--h:55%"></div>
+                  <div class="bar" style="--h:40%"></div>
+                  <div class="bar" style="--h:75%"></div>
+                  <div class="bar" style="--h:60%"></div>
+                  <div class="bar" style="--h:85%"></div>
+                  <div class="bar active" style="--h:95%"></div>
+                  <div class="bar" style="--h:70%"></div>
+                </div>
+                <div class="chart-baseline"></div>
+                <p class="chart-label font-mono text-luna-sky/25 text-[9px] text-center mt-2 tracking-widest">CHART AREA · READY FOR INTEGRATION</p>
+              </div>
+
+            </div>
+
+            <!-- Mini Stats Row -->
+            <div class="mini-stats">
+              <div class="mini-stat">
+                <span class="mini-stat-val font-mono text-luna-sky">—</span>
+                <span class="mini-stat-label">Verified</span>
+              </div>
+              <div class="mini-stat-divider"></div>
+              <div class="mini-stat">
+                <span class="mini-stat-val font-mono text-luna-teal">—</span>
+                <span class="mini-stat-label">Pending</span>
+              </div>
+              <div class="mini-stat-divider"></div>
+              <div class="mini-stat">
+                <span class="mini-stat-val font-mono text-luna-sky/60">—</span>
+                <span class="mini-stat-label">Divisi</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- ── END KOLOM KANAN ── -->
+
+      </div>
+      <!-- End Hero Grid -->
+
+    </div>
+  </main>
+
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
-<section class="relative w-full min-h-screen py-20 px-4 md:px-8 bg-[#011C40] text-slate-100 overflow-hidden">
-  
-  <div class="max-w-7xl mx-auto space-y-12 relative z-10">
-    
-    <div class="text-center md:text-left space-y-2">
-      <h2 class="text-xs md:text-sm font-bold tracking-widest text-[#A7EBF2] uppercase">Tentang Kami</h2>
-      <p class="text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-[#54ACBF] bg-clip-text text-transparent">
-        Divisi Pendataan & Linimasa Kegiatan
-      </p>
-    </div>
-
-    <div class="w-full space-y-4">
-      <div class="flex items-center justify-between">
-        <h3 class="text-lg font-bold text-slate-200 flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-[#A7EBF2] animate-pulse"></span> Linimasa Agenda HI-FEST 2026
-        </h3>
-        <span class="text-xs text-slate-400 hidden md:inline-block">Gunakan scroll horizontal ↔</span>
-      </div>
-      
-      <div class="w-full flex gap-5 overflow-x-auto snap-x snap-mandatory pb-6 scrollbar-hide" style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;">
-        
-        <div class="flex-shrink-0 w-[290px] snap-start bg-[#023859]/40 backdrop-blur-md border-2 border-[#A7EBF2] rounded-2xl p-5 shadow-xl transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between group relative overflow-hidden">
-          <div class="absolute -right-6 -top-6 w-24 h-24 bg-[#54ACBF]/10 rounded-full blur-xl group-hover:bg-[#54ACBF]/20 transition-all"></div>
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-[#A7EBF2] tracking-wider">01 / 11</span>
-              <span class="px-2.5 py-1 text-[10px] font-extrabold tracking-wider uppercase rounded-full bg-[#54ACBF] text-[#011C40] animate-pulse shadow-[0_0_10px_rgba(84,172,191,0.4)]">
-                Sedang Berjalan
-              </span>
-            </div>
-            <h4 class="text-lg font-bold text-white group-hover:text-[#A7EBF2] transition-colors">Rapat Akbar II</h4>
-          </div>
-          <div class="mt-8 pt-3 border-t border-white/10 flex items-center gap-2">
-            <div class="w-7 h-7 rounded-lg bg-[#023859] flex items-center justify-center text-xs shadow-[inset_2px_2px_5px_rgba(0,0,0,0.4),_2px_2px_5px_rgba(255,255,255,0.05)] text-[#A7EBF2]">
-              <i class="fa-solid fa-calendar-day"></i>
-            </div>
-            <span class="text-sm font-medium text-slate-300">20 Mei 2026</span>
-          </div>
-        </div>
-
-        <div class="flex-shrink-0 w-[290px] snap-start bg-[#023859]/20 backdrop-blur-md border border-white/10 rounded-2xl p-5 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-white/20 flex flex-col justify-between group">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-500">02 / 11</span>
-              <span class="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase rounded-full bg-white/5 text-slate-400 border border-white/10">Mendatang</span>
-            </div>
-            <h4 class="text-lg font-bold text-slate-200 group-hover:text-[#A7EBF2] transition-colors">Pendaftaran Batch 2</h4>
-          </div>
-          <div class="mt-8 pt-3 border-t border-white/5 flex items-center gap-2">
-            <div class="w-7 h-7 rounded-lg bg-[#023859] flex items-center justify-center text-xs shadow-[inset_2px_2px_5px_rgba(0,0,0,0.4),_2px_2px_5px_rgba(255,255,255,0.05)] text-slate-400">
-              <i class="fa-solid fa-calendar"></i>
-            </div>
-            <span class="text-sm text-slate-400">22–26 Mei 2026</span>
-          </div>
-        </div>
-
-        <div class="flex-shrink-0 w-[290px] snap-start bg-[#023859]/20 backdrop-blur-md border border-white/10 rounded-2xl p-5 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-white/20 flex flex-col justify-between group">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-500">03 / 11</span>
-              <span class="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase rounded-full bg-white/5 text-slate-400 border border-white/10">Mendatang</span>
-            </div>
-            <h4 class="text-lg font-bold text-slate-200 group-hover:text-[#A7EBF2] transition-colors
-            <section class="relative w-full min-h-screen py-20 px-4 md:px-8 bg-[#011C40] text-slate-100 overflow-hidden">
-  
-  <div class="max-w-7xl mx-auto space-y-8 relative z-10">
-    
-    <div class="text-center md:text-left space-y-2">
-      <h2 class="text-xs md:text-sm font-bold tracking-widest text-[#A7EBF2] uppercase">Statistik Real-Time</h2>
-      <p class="text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-[#54ACBF] bg-clip-text text-transparent">
-        All Data Update Dashboard
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      
-      <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-6">
-        
-        <div class="bg-[#023859]/30 backdrop-blur-md border border-white/10 rounded-2xl p-5 flex flex-col justify-between shadow-xl group hover:border-white/20 transition-all">
-          <div class="space-y-1">
-            <h4 class="text-sm font-bold text-slate-300">Kategori Lomba</h4>
-            <p class="text-xs text-slate-400">Peta distribusi makro</p>
-          </div>
-          
-          <div class="my-6 flex justify-center items-center relative">
-            <div class="w-28 h-28 rounded-full border-[12px] border-[#54ACBF] border-t-[#A7EBF2] flex items-center justify-center rotate-45 shadow-[4px_4px_10px_rgba(0,0,0,0.3)]">
-              <div class="w-[64px] h-[64px] rounded-full bg-[#011C40] -rotate-45 flex flex-col items-center justify-center shadow-[inset_3px_3px_6px_rgba(0,0,0,0.4)]">
-                <span class="text-xs font-extrabold text-white">240</span>
-                <span class="text-[9px] text-slate-400 font-medium">Total</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="flex justify-between items-center text-xs pt-3 border-t border-white/5">
-            <div class="flex items-center gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#A7EBF2]"></span>
-              <span class="text-slate-300">Olahraga (55%)</span>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#54ACBF]"></span>
-              <span class="text-slate-400">Pendidikan (45%)</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-[#023859]/30 backdrop-blur-md border border-white/10 rounded-2xl p-5 flex flex-col justify-between shadow-xl group hover:border-white/20 transition-all">
-          <div class="space-y-1">
-            <h4 class="text-sm font-bold text-slate-300">Kategori Peserta</h4>
-            <p class="text-xs text-slate-400">Klasifikasi tipe pendaftar</p>
-          </div>
-          
-          <div class="my-auto py-4 space-y-4">
-            <div class="space-y-1.5">
-              <div class="flex justify-between text-xs font-medium">
-                <span class="text-slate-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#A7EBF2]"></span>Independen</span>
-                <span class="text-[#A7EBF2] font-bold">145</span>
-              </div>
-              <div class="w-full h-3.5 bg-[#011C40] rounded-full p-0.5 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.4)]">
-                <div class="h-full bg-[#A7EBF2] rounded-full shadow-[0_0_8px_rgba(167,235,242,0.4)]" style="width: 60%"></div>
-              </div>
-            </div>
-
-            <div class="space-y-1.5">
-              <div class="flex justify-between text-xs font-medium">
-                <span class="text-slate-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#26658C]"></span>Delegasi Mediator</span>
-                <span class="text-slate-300 font-bold">95</span>
-              </div>
-              <div class="w-full h-3.5 bg-[#011C40] rounded-full p-0.5 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.4)]">
-                <div class="h-full bg-[#26658C] rounded-full" style="width: 40%"></div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="text-[11px] text-slate-400 text-center pt-3 border-t border-white/5">
-            Sinkronisasi otomatis dari berkas pendaftaran
-          </div>
-        </div>
-
-      </div>
-
-      <div class="lg:col-span-7 bg-[#023859]/30 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between hover:border-white/20 transition-all">
-        <div class="space-y-1 mb-4">
-          <h4 class="text-sm font-bold text-slate-300">Grafik Jenis Perlombaan</h4>
-          <p class="text-xs text-slate-400">Dua rumpun utama (Cyan: Olahraga | Teal: Pendidikan)</p>
-        </div>
-        
-        <div class="space-y-3.5 flex-grow flex flex-col justify-center">
-          
-          <div class="flex items-center gap-4">
-            <span class="w-24 text-right text-xs font-medium text-slate-300 truncate">Futsal</span>
-            <div class="flex-grow h-6 bg-[#011C40] rounded-lg p-0.5 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.4)] flex items-center">
-              <div class="h-full bg-gradient-to-r from-[#26658C] to-[#A7EBF2] rounded-md flex items-center justify-end px-2 shadow-[0_0_8px_rgba(167,235,242,0.2)]" style="width: 90%">
-                <span class="text-[10px] font-bold text-[#011C40]">78</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <span class="w-24 text-right text-xs font-medium text-slate-300 truncate">Badminton</span>
-            <div class="flex-grow h-6 bg-[#011C40] rounded-lg p-0.5 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.4)] flex items-center">
-              <div class="h-full bg-gradient-to-r from-[#26658C] to-[#A7EBF2] rounded-md flex items-center justify-end px-2" style="width: 75%">
-                <span class="text-[10px] font-bold text-[#011C40]">62</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <span class="w-24 text-right text-xs font-medium text-slate-300 truncate">Cerdas Cermat</span>
-            <div class="flex-grow h-6 bg-[#011C40] rounded-lg p-0.5 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.4)] flex items-center">
-              <div class="h-full bg-gradient-to-r from-[#023859] to-[#54ACBF] rounded-md flex items-center justify-end px-2 shadow-[0_0_8px_rgba(84,172,191,0.2)]" style="width: 55%">
-                <span class="text-[10px] font-bold text-white">45</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <span class="w-24 text-right text-xs font-medium text-slate-300 truncate">Story Telling</span>
-            <div class="flex-grow h-6 bg-[#011C40] rounded-lg p-0.5 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.4)] flex items-center">
-              <div class="h-full bg-gradient-to-r from-[#023859] to-[#54ACBF] rounded-md flex items-center justify-end px-2" style="width: 40%">
-                <span class="text-[10px] font-bold text-white">32</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <span class="w-24 text-right text-xs font-medium text-slate-300 truncate">Tenis Meja</span>
-            <div class="flex-grow h-6 bg-[#011C40] rounded-lg p-0.5 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.4)] flex items-center">
-              <div class="h-full bg-gradient-to-r from-[#26658C] to-[#A7EBF2] rounded-md flex items-center justify-end px-2" style="width: 30%">
-                <span class="text-[10px] font-bold text-[#011C40]">23</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <span class="w-24 text-right text-xs font-medium text-slate-300 truncate">Pidato B. Arab</span>
-            <div class="flex-grow h-6 bg-[#011C40] rounded-lg p-0.5 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.4)] flex items-center">
-              <div class="h-full bg-gradient-to-r from-[#023859] to-[#54ACBF] rounded-md flex items-center justify-end px-2" style="width: 25%">
-                <span class="text-[10px] font-bold text-white">18</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="lg:col-span-5 bg-[#023859]/30 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between hover:border-white/20 transition-all">
-        <div class="space-y-1 mb-6">
-          <h4 class="text-sm font-bold text-slate-300">Jenjang Pendidikan</h4>
-          <p class="text-xs text-slate-400">Monokromatik Gradasi Intensitas (Bawah ke Atas)</p>
-        </div>
-        
-        <div class="h-64 flex items-end justify-between gap-2 px-2 border-b border-white/10 pb-1">
-          
-          <div class="flex flex-col items-center flex-grow group space-y-2">
-            <div class="w-full bg-[#023859] rounded-t-md transition-all group-hover:brightness-110 relative flex justify-center" style="height: 25%">
-              <span class="absolute -top-6 text-[10px] font-bold text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">15</span>
-            </div>
-            <span class="text-[10px] font-medium text-slate-400 rotate-45 sm:rotate-0 origin-left mt-1 sm:mt-0">I'dady</span>
-          </div>
-
-          <div class="flex flex-col items-center flex-grow group space-y-2">
-            <div class="w-full bg-[#1b4e70] rounded-t-md transition-all group-hover:brightness-110 relative flex justify-center" style="height: 45%">
-              <span class="absolute -top-6 text-[10px] font-bold text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">34</span>
-            </div>
-            <span class="text-[10px] font-medium text-slate-400 rotate-45 sm:rotate-0 origin-left">Tsanawy</span>
-          </div>
-
-          <div class="flex flex-col items-center flex-grow group space-y-2">
-            <div class="w-full bg-[#26658C] rounded-t-md transition-all group-hover:brightness-110 relative flex justify-center" style="height: 60%">
-              <span class="absolute -top-6 text-[10px] font-bold text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">52</span>
-            </div>
-            <span class="text-[10px] font-medium text-slate-400 rotate-45 sm:rotate-0 origin-left">Ma'had</span>
-          </div>
-
-          <div class="flex flex-col items-center flex-grow group space-y-2">
-            <div class="w-full bg-[#397da8] rounded-t-md transition-all group-hover:brightness-110 relative flex justify-center" style="height: 75%">
-              <span class="absolute -top-6 text-[10px] font-bold text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">68</span>
-            </div>
-            <span class="text-[10px] font-medium text-slate-400 rotate-45 sm:rotate-0 origin-left">DK</span>
-          </div>
-
-          <div class="flex flex-col items-center flex-grow group space-y-2">
-            <div class="w-full bg-[#54ACBF] rounded-t-md transition-all group-hover:brightness-110 relative flex justify-center shadow-[0_0_10px_rgba(84,172,191,0.2)]" style="height: 90%">
-              <span class="absolute -top-6 text-[10px] font-bold text-[#A7EBF2] opacity-0 group-hover:opacity-100 transition-opacity">85</span>
-            </div>
-            <span class="text-[10px] font-medium text-slate-400 rotate-45 sm:rotate-0 origin-left">Kuliah</span>
-          </div>
-
-          <div class="flex flex-col items-center flex-grow group space-y-2">
-            <div class="w-full bg-[#7ec4d1] rounded-t-md transition-all group-hover:brightness-110 relative flex justify-center" style="height: 35%">
-              <span class="absolute -top-6 text-[10px] font-bold text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">24</span>
-            </div>
-            <span class="text-[10px] font-medium text-slate-400 rotate-45 sm:rotate-0 origin-left">Alum Mhd</span>
-          </div>
-
-          <div class="flex flex-col items-center flex-grow group space-y-2">
-            <div class="w-full bg-[#A7EBF2] rounded-t-md transition-all group-hover:brightness-110 relative flex justify-center shadow-[0_0_10px_rgba(167,235,242,0.3)]" style="height: 20%">
-              <span class="absolute -top-6 text-[10px] font-bold text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">12</span>
-            </div>
-            <span class="text-[10px] font-medium text-slate-400 rotate-45 sm:rotate-0 origin-left">Alum DK</span>
-          </div>
-
-        </div>
-        <div class="text-[10px] text-slate-500 text-center mt-6">Sumbu X: Tingkat Pendidikan | Sumbu Y: Kuantitas Peserta</div>
-      </div>
-
-      <div class="lg:col-span-7 bg-[#023859]/30 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between hover:border-white/20 transition-all max-h-[380px] lg:max-h-full">
-        
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-4 mb-4">
-          <div class="space-y-0.5">
-            <h4 class="text-sm font-bold text-slate-300">Klasifikasi Kekeluargaan</h4>
-            <p class="text-xs text-slate-400">Total sebaran dari 16 organisasi afiliasi</p>
-          </div>
-          
-          <div class="flex items-center gap-3 w-full sm:w-auto">
-            <div class="relative w-full sm:w-44">
-              <input type="text" placeholder="Cari..." class="w-full text-xs bg-[#011C40] border border-white/10 rounded-lg pl-8 pr-3 py-1.5 focus:outline-none focus:border-[#54ACBF] text-slate-200 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.4)]">
-              <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-[10px] text-slate-500"></i>
-            </div>
-            <button class="w-8 h-8 rounded-lg bg-[#023859] flex items-center justify-center text-xs text-[#A7EBF2] shadow-[5px_5px_10px_rgba(0,0,0,0.3),_-2px_-2px_6px_rgba(255,255,255,0.02)] active:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.4)] transition-all">
-              <i class="fa-solid fa-arrow-down-short-wide"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="flex-grow overflow-y-auto pr-1 space-y-1 max-h-[220px] lg:max-h-[250px] scrollbar-thin">
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr class="text-[10px] font-bold tracking-wider text-slate-400 uppercase border-b border-white/5">
-                <th class="py-2 pl-3 w-12 text-center">No</th>
-                <th class="py-2 px-3">Nama Kekeluargaan</th>
-                <th class="py-2 pr-3 text-right">Total Pendaftar</th>
-              </tr>
-            </thead>
-            <tbody class="text-xs divide-y divide-white/[0.02]">
-              
-              <tr class="bg-white/[0.01]">
-                <td class="py-2.5 pl-3 font-mono text-center text-[#54ACBF]">01</td>
-                <td class="py-2.5 px-3 font-semibold text-slate-200">KPMJB</td>
-                <td class="py-2.5 pr-3 text-right font-extrabold text-[#A7EBF2] drop-shadow-[0_0_8px_rgba(167,235,242,0.3)]">35</td>
-              </tr>
-              
-              <tr class="bg-transparent">
-                <td class="py-2.5 pl-3 font-mono text-center text-slate-500">02</td>
-                <td class="py-2.5 px-3 font-medium text-slate-300">KKS</td>
-                <td class="py-2.5 pr-3 text-right font-bold text-slate-200">22</td>
-              </tr>
-
-              <tr class="bg-white/[0.01]">
-                <td class="py-2.5 pl-3 font-mono text-center text-slate-500">03</td>
-                <td class="py-2.5 px-3 font-medium text-slate-300">KPJ</td>
-                <td class="py-2.5 pr-3 text-right font-bold text-slate-200">18</td>
-              </tr>
-
-              <tr class="bg-transparent">
-                <td class="py-2.5 pl-3 font-mono text-center text-slate-500">04</td>
-                <td class="py-2.5 px-3 font-medium text-slate-300">KMM</td>
-                <td class="py-2.5 pr-3 text-right font-bold text-slate-200">12</td>
-              </tr>
-
-              <tr class="bg-white/[0.01]">
-                <td class="py-2.5 pl-3 font-mono text-center text-slate-500">05</td>
-                <td class="py-2.5 px-3 font-medium text-slate-300">KMNTB</td>
-                <td class="py-2.5 pr-3 text-right font-bold text-slate-200">9</td>
-              </tr>
-
-              <tr class="bg-transparent">
-                <td class="py-2.5 pl-3 font-mono text-center text-slate-500">06</td>
-                <td class="py-2.5 px-3 font-medium text-slate-300">FOSGAMA</td>
-                <td class="py-2.5 pr-3 text-right font-bold text-slate-200">8</td>
-              </tr>
-
-              <tr class="bg-white/[0.01]">
-                <td class="py-2.5 pl-3 font-mono text-center text-slate-500">07</td>
-                <td class="py-2.5 px-3 font-medium text-slate-300">GAMA JATIM</td>
-                <td class="py-2.5 pr-3 text-right font-bold text-slate-200">7</td>
-              </tr>
-
-              <tr class="bg-transparent">
-                <td class="py-2.5 pl-3 font-mono text-center text-slate-500">08</td>
-                <td class="py-2.5 px-3 font-medium text-slate-300">HMMSU</td>
-                <td class="py-2.5 pr-3 text-right font-bold text-slate-200">6</td>
-              </tr>
-
-              <tr class="bg-white/[0.01]">
-                <td class="py-2.5 pl-3 font-mono text-center text-slate-500">09</td>
-                <td class="py-2.5 px-3 font-medium text-slate-300">IKMAL</td>
-                <td class="py-2.5 pr-3 text-right font-bold text-slate-200">5</td>
-              </tr>
-              <tr class="bg-transparent">
-                <td class="py-2.5 pl-3 font-mono text-center text-slate-500">10</td>
-                <td class="py-2.5 px-3 font-medium text-slate-300">KEMASS</td>
-                <td class="py-2.5 pr-3 text-right font-bold text-slate-200">5</td>
-              </tr>
-
-            </tbody>
-          </table>
-        </div>
-        
-      </div>
-
-    </div>
-
-  </div>
-  
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#26658C]/10 rounded-full blur-[160px] pointer-events-none z-0"></div>
-</section>
-
-<style>
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 4px;
-  }
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background: rgba(1, 28, 64, 0.5);
-    border-radius: 10px;
-  }
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: rgba(84, 172, 191, 0.3);
-    border-radius: 10px;
-  }
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: rgba(167, 235, 242, 0.5);
-  }
-</style>
