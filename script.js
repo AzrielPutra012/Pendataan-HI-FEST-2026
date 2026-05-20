@@ -709,7 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Horizontal Bar Chart (Jenis Lomba) ──
     const jenisData = {
-      'hbar-futsal':   data.futsal   || 0,
+      'hbar-futsal':   data.futsal   || 50,
       'hbar-badminton':data.badminton || 0,
       'hbar-tenis':    data.tenis    || 0,
       'hbar-lcc':      data.lcc      || 0,
