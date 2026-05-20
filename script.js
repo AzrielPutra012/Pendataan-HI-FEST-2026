@@ -416,3 +416,401 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('%c[HI-FEST 2026] About Us Section Loaded · Fase 2 ✓', 'color:#54ACBF; font-weight:bold;');
 
 });
+
+/* ═══════════════════════════════════════════════════
+   data-script.js — HI-FEST 2026 | All Data Update
+   Letakkan setelah about-script.js, sebelum </body>
+═══════════════════════════════════════════════════ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ────────────────────────────────────────────────
+  // INTERNAL STATE
+  // ────────────────────────────────────────────────
+  let tableData  = [];   // raw kekeluargaan rows
+  let sortMode   = 'az'; // 'az' | 'za' | 'asc' | 'desc'
+  let searchTerm = '';
+  let chartsAnimated = false;
+
+  // ────────────────────────────────────────────────
+  // 1. INTERSECTION OBSERVER — Animate charts when visible
+  // ────────────────────────────────────────────────
+  const dataSection = document.getElementById('alldata');
+  if (dataSection) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !chartsAnimated) {
+          chartsAnimated = true;
+          animateAllCharts();
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    sectionObserver.observe(dataSection);
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 2. CHART ANIMATIONS — Trigger all on scroll-into-view
+  // ────────────────────────────────────────────────
+  function animateAllCharts() {
+    // Horizontal bars (jenis lomba)
+    document.querySelectorAll('.hchart-bar').forEach((bar, i) => {
+      setTimeout(() => {
+        const targetW = bar.getAttribute('data-target-w') || '0%';
+        bar.style.width = targetW;
+      }, i * 100);
+    });
+
+    // Vertical bars (jenjang)
+    document.querySelectorAll('.vcol-bar').forEach((bar, i) => {
+      setTimeout(() => {
+        const targetH = bar.getAttribute('data-target-h') || '0%';
+        bar.style.height = targetH;
+      }, i * 120);
+    });
+
+    // Horizontal bars (peserta)
+    ['bar-indep', 'bar-deleg'].forEach((id, i) => {
+      const bar = document.getElementById(id);
+      if (bar) {
+        setTimeout(() => {
+          const tw = bar.getAttribute('data-target-w') || '0%';
+          bar.style.width = tw;
+        }, i * 150 + 200);
+      }
+    });
+
+    // Ring charts
+    animateRings();
+
+    // Mini-bar fills in table
+    animateTableBars();
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 3. RING CHART ANIMATION
+  // ────────────────────────────────────────────────
+  function animateRings() {
+    const ringSport = document.getElementById('ring-sport');
+    const ringEdu   = document.getElementById('ring-edu');
+    if (!ringSport || !ringEdu) return;
+
+    const targetSport = parseFloat(ringSport.getAttribute('data-pct') || 0);
+    const targetEdu   = parseFloat(ringEdu.getAttribute('data-pct')   || 0);
+
+    const circumSport = 188.5;
+    const circumEdu   = 138.2;
+
+    ringSport.style.strokeDashoffset = circumSport - (circumSport * targetSport / 100);
+    ringEdu.style.strokeDashoffset   = circumEdu   - (circumEdu   * targetEdu   / 100);
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 4. TABLE MINI-BAR ANIMATION
+  // ────────────────────────────────────────────────
+  function animateTableBars() {
+    document.querySelectorAll('.td-mini-fill').forEach((fill, i) => {
+      const targetW = fill.getAttribute('data-target-w') || '0%';
+      setTimeout(() => { fill.style.width = targetW; }, i * 40 + 300);
+    });
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 5. TABLE — Search
+  // ────────────────────────────────────────────────
+  const searchInput = document.getElementById('search-kekel');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      searchTerm = searchInput.value.trim().toLowerCase();
+      renderTable();
+    });
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 6. TABLE — Sort
+  // ────────────────────────────────────────────────
+  const sortBtn   = document.getElementById('sort-btn');
+  const sortLabel = document.getElementById('sort-label');
+  const sortIcon  = document.getElementById('sort-icon');
+
+  const sortCycles = ['az', 'za', 'desc', 'asc'];
+  const sortLabels = { az: 'A–Z', za: 'Z–A', desc: '↓ Max', asc: '↑ Min' };
+
+  if (sortBtn) {
+    sortBtn.addEventListener('click', () => {
+      const idx = sortCycles.indexOf(sortMode);
+      sortMode = sortCycles[(idx + 1) % sortCycles.length];
+      if (sortLabel) sortLabel.textContent = sortLabels[sortMode];
+      renderTable();
+    });
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 7. TABLE RENDER — Filter + Sort + Zebra + Highlight top
+  // ────────────────────────────────────────────────
+  function renderTable() {
+    const bodyEl  = document.getElementById('table-kekel-body');
+    const emptyEl = document.getElementById('table-empty');
+    if (!bodyEl) return;
+
+    const rows = Array.from(bodyEl.querySelectorAll('.tr-row'));
+
+    // Filter
+    const filtered = rows.filter(row => {
+      const name = (row.getAttribute('data-name') || '').toLowerCase();
+      return name.includes(searchTerm);
+    });
+
+    // Sort
+    filtered.sort((a, b) => {
+      const nameA = a.getAttribute('data-name') || '';
+      const nameB = b.getAttribute('data-name') || '';
+      const valA  = parseInt(a.getAttribute('data-val')) || 0;
+      const valB  = parseInt(b.getAttribute('data-val')) || 0;
+
+      if (sortMode === 'az')   return nameA.localeCompare(nameB);
+      if (sortMode === 'za')   return nameB.localeCompare(nameA);
+      if (sortMode === 'desc') return valB - valA;
+      if (sortMode === 'asc')  return valA - valB;
+      return 0;
+    });
+
+    // Find max val
+    const maxVal = Math.max(...filtered.map(r => parseInt(r.getAttribute('data-val')) || 0));
+
+    // Hide all rows first
+    rows.forEach(r => { r.style.display = 'none'; r.classList.remove('is-top'); });
+
+    // Show & reorder filtered
+    filtered.forEach((row, idx) => {
+      row.style.display  = '';
+      row.style.order    = idx;
+
+      // Renumber
+      const tdNo = row.querySelector('.td-no');
+      if (tdNo) tdNo.textContent = idx + 1;
+
+      // Highlight top
+      const val = parseInt(row.getAttribute('data-val')) || 0;
+      if (val > 0 && val === maxVal) row.classList.add('is-top');
+
+      // Reapply zebra (nth-child doesn't work with display toggling, so manual)
+      row.style.background = '';
+      if (idx % 2 === 0) {
+        row.style.background = 'rgba(167, 235, 242, 0.025)';
+      }
+    });
+
+    // Reorder DOM
+    filtered.forEach(row => bodyEl.appendChild(row));
+
+    // Empty state
+    if (emptyEl) {
+      emptyEl.classList.toggle('hidden', filtered.length > 0);
+    }
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 8. LAST UPDATED TIMESTAMP
+  // ────────────────────────────────────────────────
+  function setLastUpdated() {
+    const el = document.getElementById('last-updated-time');
+    if (!el) return;
+    const now = new Date();
+    const formatted = now.toLocaleDateString('id-ID', {
+      day: '2-digit', month: 'short', year: 'numeric',
+    }) + ' · ' + now.toLocaleTimeString('id-ID', {
+      hour: '2-digit', minute: '2-digit',
+    });
+    el.textContent = formatted;
+  }
+
+
+  // ────────────────────────────────────────────────
+  // 9. PUBLIC API — window.updateAllData(data)
+  //
+  //  Call this to inject real data into the dashboard.
+  //
+  //  @param {Object} data — full data shape:
+  //  {
+  //    // Kategori Lomba (Ring)
+  //    sport: 320, edu: 180,
+  //
+  //    // Kategori Peserta (Hbar)
+  //    indep: 280, deleg: 220,
+  //
+  //    // Jenis Perlombaan (Hchart) — values
+  //    futsal: 95, badminton: 80, tenis: 60,
+  //    lcc: 70, pidato: 55, story: 40,
+  //
+  //    // Jenjang Pendidikan (Vchart)
+  //    dk: 30, mahad: 55, idady: 70, tsanawy: 90,
+  //    kuliah: 110, aldk: 40, almahad: 50,
+  //
+  //    // Kekeluargaan (Table) — array
+  //    kekeluargaan: [
+  //      { name: 'FOSGAMA', total: 45 },
+  //      ...
+  //    ]
+  //  }
+  // ────────────────────────────────────────────────
+  window.updateAllData = function(data = {}) {
+
+    setLastUpdated();
+
+    // ── Ring Chart ──
+    const sportVal = data.sport || 0;
+    const eduVal   = data.edu   || 0;
+    const totalLomba = sportVal + eduVal;
+
+    const ringSport = document.getElementById('ring-sport');
+    const ringEdu   = document.getElementById('ring-edu');
+    const elRingTotal = document.getElementById('ring-total-lomba');
+    const elValSport  = document.getElementById('val-sport');
+    const elValEdu    = document.getElementById('val-edu');
+
+    if (ringSport) ringSport.setAttribute('data-pct', totalLomba ? (sportVal / totalLomba * 100).toFixed(1) : 0);
+    if (ringEdu)   ringEdu.setAttribute('data-pct',   totalLomba ? (eduVal   / totalLomba * 100).toFixed(1) : 0);
+    if (elRingTotal) elRingTotal.textContent = totalLomba.toLocaleString('id-ID');
+    if (elValSport)  elValSport.textContent  = sportVal.toLocaleString('id-ID');
+    if (elValEdu)    elValEdu.textContent    = eduVal.toLocaleString('id-ID');
+
+    // ── Kategori Peserta Bars ──
+    const indepVal = data.indep || 0;
+    const delegVal = data.deleg || 0;
+    const totalPeserta = indepVal + delegVal;
+
+    const setHbar = (id, pctId, valId, val, total, fillId) => {
+      const pct = total ? Math.round(val / total * 100) : 0;
+      const bar = document.getElementById(fillId);
+      if (bar) {
+        bar.setAttribute('data-target-w', `${pct}%`);
+        if (chartsAnimated) bar.style.width = `${pct}%`;
+      }
+      const elVal = document.getElementById(valId);
+      const elPct = document.getElementById(pctId);
+      if (elVal) elVal.textContent = val.toLocaleString('id-ID');
+      if (elPct) elPct.textContent = `${pct}%`;
+    };
+
+    setHbar(null, 'pct-indep', 'val-indep', indepVal, totalPeserta, 'bar-indep');
+    setHbar(null, 'pct-deleg', 'val-deleg', delegVal, totalPeserta, 'bar-deleg');
+
+    const elTotalPeserta = document.getElementById('total-peserta');
+    if (elTotalPeserta) elTotalPeserta.textContent = totalPeserta.toLocaleString('id-ID');
+
+    // ── Horizontal Bar Chart (Jenis Lomba) ──
+    const jenisData = {
+      'hbar-futsal':   data.futsal   || 0,
+      'hbar-badminton':data.badminton || 0,
+      'hbar-tenis':    data.tenis    || 0,
+      'hbar-lcc':      data.lcc      || 0,
+      'hbar-pidato':   data.pidato   || 0,
+      'hbar-story':    data.story    || 0,
+    };
+
+    const maxJenis = Math.max(...Object.values(jenisData));
+    Object.entries(jenisData).forEach(([id, val]) => {
+      const bar = document.getElementById(id);
+      if (!bar) return;
+      const pct = maxJenis ? Math.round(val / maxJenis * 88) : 0;
+      bar.setAttribute('data-target-w', `${pct}%`);
+      bar.setAttribute('data-val', val);
+      const valEl = bar.querySelector('.hchart-val');
+      if (valEl) valEl.textContent = val > 0 ? val.toLocaleString('id-ID') : '—';
+      if (chartsAnimated) bar.style.width = `${pct}%`;
+    });
+
+    // Re-sort hchart rows by value
+    const hchartWrap = document.getElementById('hchart-jenis');
+    if (hchartWrap) {
+      const hrows = Array.from(hchartWrap.querySelectorAll('.hchart-row'));
+      hrows.sort((a, b) => {
+        const barA = a.querySelector('.hchart-bar');
+        const barB = b.querySelector('.hchart-bar');
+        return (parseInt(barB?.getAttribute('data-val')) || 0) -
+               (parseInt(barA?.getAttribute('data-val')) || 0);
+      });
+      hrows.forEach(r => hchartWrap.appendChild(r));
+    }
+
+    // ── Vertical Chart (Jenjang) ──
+    const jenjangData = {
+      dk:      data.dk      || 0,
+      mahad:   data.mahad   || 0,
+      idady:   data.idady   || 0,
+      tsanawy: data.tsanawy || 0,
+      kuliah:  data.kuliah  || 0,
+      aldk:    data.aldk    || 0,
+      almahad: data.almahad || 0,
+    };
+
+    const maxJenjang = Math.max(...Object.values(jenjangData));
+    Object.entries(jenjangData).forEach(([key, val]) => {
+      const bar  = document.getElementById(`vbar-${key}`);
+      const valEl = document.getElementById(`vval-${key}`);
+      if (!bar) return;
+      const pct = maxJenjang ? Math.round(val / maxJenjang * 90) : 0;
+      bar.setAttribute('data-target-h', `${pct}%`);
+      if (valEl) valEl.textContent = val > 0 ? val : '—';
+      if (chartsAnimated) bar.style.height = `${pct}%`;
+    });
+
+    // ── Kekeluargaan Table ──
+    if (Array.isArray(data.kekeluargaan) && data.kekeluargaan.length > 0) {
+      tableData = data.kekeluargaan;
+      const maxKekel = Math.max(...data.kekeluargaan.map(k => k.total || 0));
+      const bodyEl   = document.getElementById('table-kekel-body');
+
+      if (bodyEl) {
+        const rows = bodyEl.querySelectorAll('.tr-row');
+        rows.forEach(row => {
+          const name  = row.getAttribute('data-name');
+          const match = data.kekeluargaan.find(k =>
+            k.name.toUpperCase() === name.toUpperCase()
+          );
+          if (!match) return;
+
+          const val  = match.total || 0;
+          const pct  = maxKekel ? Math.round(val / maxKekel * 100) : 0;
+
+          row.setAttribute('data-val', val);
+
+          const tdTotal  = row.querySelector('.td-total');
+          const miniFill = row.querySelector('.td-mini-fill');
+
+          if (tdTotal)  tdTotal.textContent = val > 0 ? val.toLocaleString('id-ID') : '—';
+          if (miniFill) {
+            miniFill.setAttribute('data-target-w', `${pct}%`);
+            if (chartsAnimated) miniFill.style.width = `${pct}%`;
+          }
+        });
+      }
+
+      renderTable();
+    }
+
+    // If section already visible, re-trigger animations
+    if (chartsAnimated) {
+      setTimeout(animateAllCharts, 50);
+    }
+
+    console.log('%c[HI-FEST 2026] All Data updated ✓', 'color:#54ACBF;');
+  };
+
+
+  // ────────────────────────────────────────────────
+  // 10. DEV LOG
+  // ────────────────────────────────────────────────
+  console.log('%c[HI-FEST 2026] All Data Section Loaded · Fase 3 ✓', 'color:#54ACBF; font-weight:bold;');
+  console.log('%cHook ready: window.updateAllData({ sport, edu, indep, deleg, futsal, badminton, tenis, lcc, pidato, story, dk, mahad, idady, tsanawy, kuliah, aldk, almahad, kekeluargaan:[{name,total}] })', 'color:#A7EBF2; font-size:10px;');
+
+});
