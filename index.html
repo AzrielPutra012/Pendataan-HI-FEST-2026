@@ -1,225 +1,190 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hifest 2026 - Divisi Pendataan</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css">
+    <title>Dashboard Pendataan HI-FEST 2026</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'midnight': '#011C40',
+                        'navy': '#023859',
+                        'teal': '#54ACBF',
+                        'electric': '#A7EBF2',
+                        'ocean': '#26658C',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for UI/UX Styling (Glassmorphism & Neumorphism) -->
+    <style>
+        body {
+            background-color: #011C40; /* Midnight Blue */
+        }
+
+        /* 1. Glassmorphism untuk Top Navbar */
+        .glass-nav {
+            background: rgba(2, 56, 89, 0.65); /* Deep Navy semi-transparent */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(84, 172, 191, 0.15); /* Soft teal border */
+        }
+
+        /* 2. Dark Neumorphism (Soft UI) untuk Bento Card */
+        .neumorphism-card {
+            background: #023859; /* Deep Navy */
+            /* Bayangan gelap di kanan bawah, bayangan terang (biru laut) di kiri atas */
+            box-shadow: 12px 12px 24px rgba(0, 15, 35, 0.7),
+                       -8px -8px 24px rgba(38, 101, 140, 0.2);
+            border: 1px solid rgba(38, 101, 140, 0.1); /* Ocean Blue border halus */
+        }
+
+        /* 3. Decorative Quote Style */
+        .decorative-quote {
+            position: relative;
+        }
+        .decorative-quote::before {
+            content: '"';
+            position: absolute;
+            top: -2.5rem;
+            left: -1rem;
+            font-size: 6rem;
+            font-family: serif;
+            color: rgba(84, 172, 191, 0.15); /* Teal dengan opacity rendah */
+            z-index: -1;
+        }
+
+        /* Animated Underline Hover untuk Navbar */
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #A7EBF2; /* Electric Sky Blue */
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    </style>
 </head>
-<body class="bg-[#021024] text-white font-sans antialiased selection:bg-[#7DA0CA]/30">
+<body class="text-electric font-sans selection:bg-teal selection:text-midnight overflow-x-hidden">
 
-    <header class="navbar-custom">
-        <div class="flex items-center gap-3">
-            <div class="w-3 h-3 rounded-full bg-[#C1E8FF] animate-pulse"></div>
-            <h1 class="font-black tracking-widest text-xl text-white">HIFEST<span class="text-[#7DA0CA] font-light">2026</span></h1>
-        </div>
-        <nav class="hidden md:flex items-center gap-8">
-            <a href="#home" class="nav-link active">HOME</a>
-            <a href="#about" class="nav-link">ABOUT US</a>
-            <a href="#update" class="nav-link">UPDATE DATA</a>
-        </nav>
-        <button class="md:hidden text-[#C1E8FF] text-2xl">
-            <i class="ph ph-list"></i>
-        </button>
-    </header>
-
-    <main id="mainContainer" class="main-container-scroll">
-
-<section id="home" class="section-panel">
-    <div class="home-grid">
-        
-        <!-- KIRI - Teks Sambutan -->
-        <div class="home-left max-w-3xl z-10 space-y-6">
-            <span class="tag-internal">Bonjour!</span>
-            <h1 class="text-5xl md:text-7xl font-black tracking-tight text-white leading-none">
-                Divisi Pendataan <br>
-                <span class="text-gradient">HI-FEST 2026</span>
-            </h1>
-            <p class="text-lg md:text-2xl text-[#7DA0CA] font-medium max-w-xl italic leading-relaxed border-l-4 border-[#5483B3] pl-4">
-                "Data bukan hanya sekedar angka, tapi selalu ada cerita dibaliknya."
-            </p>
-            <div class="pt-4">
-                <a href="#about" class="btn-glow">
-                    Eksplor Portal Internal
-                    <i class="ph ph-arrow-right font-bold transition-transform duration-200 group-hover:translate-x-1"></i>
-                </a>
+    <!-- ==============================================
+         1. TOP NAVBAR (Sticky/Glassmorphism)
+         ============================================== -->
+    <nav class="fixed w-full top-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+            
+            <!-- Logo / Nama Divisi -->
+            <div class="flex items-center gap-3 cursor-default">
+                <!-- Neumorphic Icon Placeholder -->
+                <div class="w-10 h-10 rounded-xl bg-navy shadow-[4px_4px_8px_rgba(0,15,35,0.7),-2px_-2px_6px_rgba(38,101,140,0.3)] flex items-center justify-center">
+                    <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                    </svg>
+                </div>
+                <h1 class="text-lg lg:text-xl font-bold tracking-wide text-electric">
+                    Divisi Pendataan <span class="text-teal font-normal">HI-FEST 2026</span>
+                </h1>
             </div>
-        </div>
 
-        <!-- KANAN - Grafik Doughnut -->
-        <div class="home-right">
-            <div class="stats-visual">
-                <canvas id="homeDoughnutChart"></canvas>
-            </div>
-        </div>
-    </div>
-</section>
+            <!-- Horizontal Navigation Menu (Desktop) -->
+            <ul class="hidden md:flex items-center gap-10">
+                <li><a href="#" class="text-electric font-semibold hover-underline-animation transition-colors">Home</a></li>
+                <li><a href="#" class="text-ocean hover:text-electric font-semibold hover-underline-animation transition-colors">About Us</a></li>
+                <li><a href="#" class="text-ocean hover:text-electric font-semibold hover-underline-animation transition-colors">All Data</a></li>
+            </ul>
 
-        <section id="about" class="section-panel bg-[#052659]/30 border-l border-white/5">
-            <div class="max-w-4xl w-full z-10 space-y-16 my-auto overflow-y-auto max-h-[80vh] pr-2 hide-scrollbar">
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button class="md:hidden text-electric focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ==============================================
+         2. HERO SECTION (Asymmetric Two-Column Layout)
+         ============================================== -->
+    <!-- h-screen untuk pastikan konten termuat di satu layar (Above the fold) -->
+    <main class="w-full min-h-screen flex items-center pt-20 px-6 lg:px-12 max-w-screen-2xl mx-auto">
+        <div class="flex flex-col lg:flex-row w-full items-center justify-between gap-12 lg:gap-8">
+            
+            <!-- Kolom Kiri: Area Sambutan (45%) -->
+            <div class="w-full lg:w-[45%] flex flex-col justify-center mt-10 lg:mt-0 z-10">
+                <!-- Typography Hierarchy -->
+                <h1 class="text-6xl lg:text-8xl font-extrabold text-electric mb-2 tracking-tight">
+                    Bonjour<span class="text-teal">.</span>
+                </h1>
                 
-                <div class="space-y-6 pt-4">
-                    <div>
-                        <h2 class="text-xs font-bold text-[#7DA0CA] tracking-widest uppercase">The Structure</h2>
-                        <h3 class="text-3xl font-extrabold text-white mt-1">Tim Management</h3>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="team-card group">
-                            <div class="card-icon"><i class="ph ph-user-crown"></i></div>
-                            <h4 class="font-bold text-sm text-white truncate">Moch Azriel Putra N.</h4>
-                            <p class="text-[11px] text-[#C1E8FF] font-medium mt-0.5">Super Admin / Coor</p>
-                        </div>
-                        <div class="team-card group">
-                            <div class="card-icon"><i class="ph ph-user-crown"></i></div>
-                            <h4 class="font-bold text-sm text-white truncate">Noura Syahfa Azzahra</h4>
-                            <p class="text-[11px] text-[#C1E8FF] font-medium mt-0.5">Super Admin</p>
-                        </div>
-                        <div class="team-card group">
-                            <div class="card-icon"><i class="ph ph-scroll"></i></div>
-                            <h4 class="font-bold text-sm text-white truncate">Fathan Adinata</h4>
-                            <p class="text-[11px] text-[#7DA0CA] font-medium mt-0.5">Secretary</p>
-                        </div>
-                        <div class="team-card group">
-                            <div class="card-icon"><i class="ph ph-wallet"></i></div>
-                            <h4 class="font-bold text-sm text-white truncate">Lidya Lorensya</h4>
-                            <p class="text-[11px] text-[#7DA0CA] font-medium mt-0.5">Treasurer</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-6">
-                    <div>
-                        <h2 class="text-xs font-bold text-[#5483B3] tracking-widest uppercase">Schedules</h2>
-                        <h3 class="text-2xl font-extrabold text-white mt-1">Timeline Kegiatan</h3>
-                    </div>
-                    <div class="relative border-l-2 border-[#052659] pl-6 ml-2 space-y-4 text-xs">
-                        <div class="relative"><div class="timeline-dot bg-[#C1E8FF]"></div><span class="font-bold text-[#C1E8FF]">20 Mei 2026</span> — Rapat akbar kedua</div>
-                        <div class="relative"><div class="timeline-dot bg-[#7DA0CA]"></div><span class="font-bold text-[#7DA0CA]">22 Mei – 26 Mei 2026</span> — Pendaftaran Batch 2</div>
-                        <div class="relative"><div class="timeline-dot bg-[#7DA0CA]"></div><span class="font-bold text-[#7DA0CA]">27 Mei – 28 Mei 2026</span> — Extra Time</div>
-                        <div class="relative"><div class="timeline-dot bg-[#5483B3]"></div><span class="font-bold text-[#5483B3]">29 Mei 2026</span> — Seleksi Berkas</div>
-                        <div class="relative"><div class="timeline-dot bg-[#5483B3]"></div><span class="font-bold text-[#5483B3]">30 Mei 2026</span> — Up nama-nama peserta yang lolos</div>
-                        <div class="relative"><div class="timeline-dot bg-[#052659]"></div><span class="font-bold text-[#7DA0CA]">3 Juni 2026</span> — Registrasi ulang</div>
-                        <div class="relative"><div class="timeline-dot bg-[#052659]"></div><span class="font-bold text-[#7DA0CA]">4 Juni 2026</span> — Merapikan hasil registrasi ulang</div>
-                        <div class="relative"><div class="timeline-dot bg-[#052659]"></div><span class="font-bold text-[#7DA0CA]">5 Juni 2026</span> — Up hasil registrasi ulang</div>
-                        <div class="relative"><div class="timeline-dot bg-[#5483B3]"></div><span class="font-bold text-[#5483B3]">6 Juni – 8 Juni 2026</span> — Pembuatan ID Card Peserta</div>
-                        <div class="relative"><div class="timeline-dot bg-[#5483B3]"></div><span class="font-bold text-[#5483B3]">27 Juni 2026</span> — Pembagian ID Card Peserta</div>
-                        <div class="relative"><div class="timeline-dot bg-[#C1E8FF]"></div><span class="font-bold text-[#C1E8FF]">1 Juli 2026</span> — Technical Meeting</div>
-                    </div>
-                </div>
-
-                <div class="space-y-6 pb-8">
-                    <div>
-                        <h2 class="text-xs font-bold text-[#7DA0CA] tracking-widest uppercase">SOP & Governance</h2>
-                        <h3 class="text-2xl font-extrabold text-white mt-1">Jobdesk & Tata Kelola Data</h3>
-                    </div>
-                    <div class="space-y-4 text-sm">
-                        
-                        <details class="group bg-[#021024]/90 rounded-xl border border-white/5 overflow-hidden transition-all duration-300">
-                            <summary class="flex justify-between items-center font-bold p-4 cursor-pointer list-none text-[#C1E8FF] hover:bg-[#052659]/40 select-none text-xs md:text-sm">
-                                <span class="flex items-center gap-2"><i class="ph ph-key text-base"></i> 1. Pembagian Jobdesk & Hak Akses</span>
-                                <span class="transition-transform duration-300 group-open:rotate-180"><i class="ph ph-caret-down font-bold"></i></span>
-                            </summary>
-                            <div class="p-5 border-t border-white/5 text-xs text-[#7DA0CA] space-y-3 bg-[#021024]/40">
-                                <p class="font-semibold text-white">Pengelolaan data dibagi menjadi beberapa level akses demi keamanan:</p>
-                                <div class="space-y-2 pl-1">
-                                    <div>
-                                        <strong class="text-white">▪ Azriel & Noura (Super Admin - Akses: Editor/Full Control)</strong>
-                                        <ul class="list-disc pl-4 mt-0.5 space-y-0.5">
-                                            <li>Mengelola Master Database (File A) dan memastikan sistem Mirroring ke File B lancar.</li>
-                                            <li>Otomatisasi Real-time Alert (WA) dan Backup Plan harian (00.00 WIB).</li>
-                                            <li>Screening, validasi berkas, dan memegang kendali penuh status data.</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <strong class="text-white">▪ Ketua Pelaksana & Bendahara (Management - Akses: View Only Seluruh Data)</strong>
-                                        <p class="pl-3 mt-0.5">Memantau perkembangan jumlah pendaftar harian. Bendahara melakukan cross-check uang masuk berdasarkan data validasi tim.</p>
-                                    </div>
-                                    <div>
-                                        <strong class="text-white">▪ Koordinator Lomba (User - Akses: View Only Terbatas)</strong>
-                                        <p class="pl-3 mt-0.5">Hanya bisa melihat data khusus cabang lombanya sendiri melalui File B (Importrange) untuk teknis pertandingan.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </details>
-
-                        <details class="group bg-[#021024]/90 rounded-xl border border-white/5 overflow-hidden transition-all duration-300">
-                            <summary class="flex justify-between items-center font-bold p-4 cursor-pointer list-none text-[#C1E8FF] hover:bg-[#052659]/40 select-none text-xs md:text-sm">
-                                <span class="flex items-center gap-2"><i class="ph ph-git-fork text-base"></i> 2. Alur Kerja Harian (SOP Step-by-Step)</span>
-                                <span class="transition-transform duration-300 group-open:rotate-180"><i class="ph ph-caret-down font-bold"></i></span>
-                            </summary>
-                            <div class="p-5 border-t border-white/5 text-xs text-[#7DA0CA] space-y-3 bg-[#021024]/40">
-                                <div class="bg-[#052659]/60 p-2.5 rounded-lg text-center font-mono text-[10px] text-white overflow-x-auto whitespace-nowrap hide-scrollbar">
-                                    [GForm] ➔ [WA Alert] ➔ [Ronda Screening] ➔ [Assign Status] ➔ [File B]
-                                </div>
-                                <ol class="list-decimal pl-4 space-y-2 mt-2">
-                                    <li><strong>Entry & Alert:</strong> Peserta daftar via Google Form. Notifikasi otomatis langsung masuk ke grup WA Tim Pendataan.</li>
-                                    <li><strong>Standardisasi Format:</strong> Cek penulisan Nama (Awal Kata Kapital), No. Telp (Kode negara 62/20 tanpa "+"), dan Berkas (Format PDF).</li>
-                                    <li><strong>Ronda Screening (Ceklis Validasi):</strong> Cek keaslian Nama, cek nominal bukti bayar (apakah ada kode unik) & keaslian struk, serta pastikan link Drive berkas tidak dikunci.</li>
-                                    <li><strong>Sistem Flagging:</strong> Jika aman, ganti warna baris Spreadsheet jadi <span class="text-green-400 font-bold">Hijau (Verified)</span>. Jika berkas bermasalah, tandai <span class="text-red-400 font-bold">Merah</span> dan admin segera hubungi peserta via WA.</li>
-                                </ol>
-                            </div>
-                        </details>
-
-                        <details class="group bg-[#021024]/90 rounded-xl border border-white/5 overflow-hidden transition-all duration-300">
-                            <summary class="flex justify-between items-center font-bold p-4 cursor-pointer list-none text-[#C1E8FF] hover:bg-[#052659]/40 select-none text-xs md:text-sm">
-                                <span class="flex items-center gap-2"><i class="ph ph-shield-check text-base"></i> 3. Protokol Keamanan & Sistem Cadangan</span>
-                                <span class="transition-transform duration-300 group-open:rotate-180"><i class="ph ph-caret-down font-bold"></i></span>
-                            </summary>
-                            <div class="p-5 border-t border-white/5 text-xs text-[#7DA0CA] space-y-2 bg-[#021024]/40">
-                                <p><strong class="text-white">▪ Prinsip Satu Pintu:</strong> Data masuk hanya via satu GForm resmi. Data keluar dikunci menggunakan rumus <code class="bg-[#052659] px-1 rounded text-[#C1E8FF] font-mono">=IMPORTRANGE</code> (File B - View Only).</p>
-                                <p><strong class="text-white">▪ Komitmen NDA Internal:</strong> Azriel dan Noura berkomitmen menjaga kerahasiaan data. Dilarang keras mengunduh data ke perangkat pribadi tanpa izin.</p>
-                                <p><strong class="text-white">▪ Mitigasi Risiko:</strong> Data diekspor berkala setiap pukul 00.00 WIB ke cloud cadangan demi menghindari kehilangan akibat masalah akun.</p>
-                            </div>
-                        </details>
-
-                        <details class="group bg-[#021024]/90 rounded-xl border border-white/5 overflow-hidden transition-all duration-300">
-                            <summary class="flex justify-between items-center font-bold p-4 cursor-pointer list-none text-[#C1E8FF] hover:bg-[#052659]/40 select-none text-xs md:text-sm">
-                                <span class="flex items-center gap-2"><i class="ph ph-clock text-base"></i> 4. Timeline Kerja & Sinkronisasi</span>
-                                <span class="transition-transform duration-300 group-open:rotate-180"><i class="ph ph-caret-down font-bold"></i></span>
-                            </summary>
-                            <div class="p-5 border-t border-white/5 text-xs text-[#7DA0CA] space-y-1.5 bg-[#021024]/40">
-                                <p><strong class="text-white">▪ Setiap Hari (23.00 WIB):</strong> Update total pendaftar harian ke grup inti panitia.</p>
-                                <p><strong class="text-white">▪ 19 April:</strong> Sinkronisasi data awal dengan Divisi Bendahara untuk rekap uang masuk.</p>
-                                <p><strong class="text-white">▪ 05 Mei:</strong> Serah terima data final 100% (Locked) ke Divisi Lomba untuk bagan pertandingan.</p>
-                                <p><strong class="text-white">▪ 07 Mei:</strong> Penyerahan data pemenang ke Divisi Humas untuk bahan konten media.</p>
-                            </div>
-                        </details>
-
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="update" class="section-panel bg-[#021024] border-l border-white/5">
-            <div class="max-w-4xl z-10 space-y-6 w-full">
-                <div>
-                    <h2 class="text-xs font-bold text-[#C1E8FF] tracking-widest uppercase">Live Statistics</h2>
-                    <h3 class="text-3xl md:text-5xl font-extrabold text-white mt-1">Update Data Lomba</h3>
-                </div>
-                <div class="stats-box">
-                    <div class="stats-card">
-                        <div class="text-xs font-bold text-[#7DA0CA] tracking-wider uppercase">Klaster Dispendik</div>
-                        <div class="text-4xl font-black text-white mt-2">245 <span class="text-sm font-normal text-[#5483B3]">Peserta</span></div>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill bg-[#5483B3] w-[65%]"></div>
-                        </div>
-                    </div>
-                    <div class="stats-card">
-                        <div class="text-xs font-bold text-[#7DA0CA] tracking-wider uppercase">Klaster Dispora</div>
-                        <div class="text-4xl font-black text-white mt-2">310 <span class="text-sm font-normal text-[#7DA0CA]">Peserta</span></div>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill bg-[#7DA0CA] w-[80%]"></div>
-                        </div>
-                    </div>
+                <h2 class="text-2xl lg:text-3xl font-semibold text-teal mb-8 tracking-wide">
+                    Divisi Pendataan HI-FEST 2026
+                </h2>
+                
+                <!-- Decorative Quote Layout -->
+                <div class="pl-6 border-l-4 border-teal decorative-quote">
+                    <p class="text-xl lg:text-2xl text-ocean font-medium italic leading-relaxed">
+                        "Data bukan hanya sekedar angka, tapi selalu ada cerita dibaliknya."
+                    </p>
                 </div>
             </div>
-        </section>
 
+            <!-- Kolom Kanan: Area Visual (55%) -->
+            <div class="w-full lg:w-[55%] h-[50vh] lg:h-[70vh] flex items-center justify-center p-2 lg:p-6">
+                <!-- Bento Box Card dengan Dark Neumorphism -->
+                <div class="neumorphism-card w-full h-full rounded-[2.5rem] flex flex-col items-center justify-center p-8 relative overflow-hidden group">
+                    
+                    <!-- Dekorasi Lingkaran Latar Belakang (Estetika) -->
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-teal opacity-10 rounded-full blur-2xl"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-electric opacity-10 rounded-full blur-2xl"></div>
+
+                    <!-- Placeholder Kontainer Grafik -->
+                    <div class="w-24 h-24 rounded-full border-2 border-dashed border-ocean flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 ease-out">
+                        <svg class="w-10 h-10 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
+                        </svg>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-electric mb-2 text-center">Data Statistik Pendaftar</h3>
+                    <p class="text-ocean text-center font-medium max-w-sm">
+                        Area visualisasi interaktif untuk live update master database (Placeholder Chart)
+                    </p>
+                    
+                    <!-- Badge Status Update -->
+                    <div class="mt-8 px-4 py-2 rounded-full bg-[#011C40] border border-ocean shadow-inner flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-teal animate-pulse"></span>
+                        <span class="text-sm text-teal font-semibold">Live System Standby</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </main>
 
-    <script src="script.js"></script>
 </body>
 </html>
