@@ -1508,7 +1508,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 80px;
+  padding-right: 8px;
   min-width: 36px;
   transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
